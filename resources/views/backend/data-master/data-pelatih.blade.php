@@ -44,6 +44,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                     </tbody>
                 </table>
             </div>
@@ -70,8 +71,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="nama_pelatih">Nama Pelatih</label>
                         <div class="col-md-9">
-                            <input type="text" id="nama_pelatih" name="nama_pelatih"
-                                class="form-control" placeholder="Masukkan Nama Pelatih">
+                            <input type="text" id="nama_pelatih" name="nama_pelatih" class="form-control"
+                                placeholder="Masukkan Nama Pelatih">
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,11 +103,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 
 @push('script-alt')
-    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> --}}
-    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap4.min.js"></script> --}}
-    {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
-    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> --}}
+    {{-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.min.js"></script> --}}
     <script src="{{ asset('backend/js/pages/tablesDatatables.js') }}"></script>
+    {{-- <script>
+        $(function() {
+            TablesDatatables.init();
+        });
+    </script> --}}
 @endpush
 
 <script>
@@ -147,6 +153,32 @@
                 },
             ]
         });
+
+        // getDataPelatih();
+
+        // function getDataPelatih() {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "/getDataPelatih",
+        //         dataType: "json",
+        //         success: function(response) {
+        //             $('tbody').html("");
+        //             $.each(response.data, function(key, item) {
+        //                 $('tbody').append('<tr>\
+        //                     <td>' + item.id + '</td>\
+        //                     <td>' + item.nama_pelatih + '</td>\
+        //                     <td>' + item.pengalaman + '</td>\
+        //                     <td>' + item.status + '</td>\
+        //                     <td><button id="edit-pelatih" data-id="' + item.id + '" title="Edit"\
+        //                             class="btn btn-default edit-pelatih"><i class="fa fa-pencil"></i></button>\
+        //                         <button id="delete-pelatih" data-id="' + item.id + '"\
+        //                             class="btn btn-success btn-md" ">Ubah Status</button>\
+        //                     </td>\
+        //                 </tr>');
+        //             });
+        //         }
+        //     });
+        // }
 
         // Create New Pelanggan.
         $('#btn-create-pelatih').click(function() {
@@ -200,8 +232,9 @@
                         $('#pelatihForm').trigger("reset");
                         $('#saveBtn').html('SIMPAN');
                         $('#ajaxModel').modal('hide');
-
                         table.draw();
+
+                        // getDataPelatih();
                     }
                 }
             });
@@ -244,6 +277,7 @@
                                         icon: "success",
                                     })
                                     .then((result) => {
+                                        // getDataPelatih();
                                         table.draw();
                                     });
                             }

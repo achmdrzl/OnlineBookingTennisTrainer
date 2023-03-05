@@ -59,6 +59,14 @@ class DataPelatihController extends Controller
         return view('backend.data-master.data-pelatih');
     }
 
+    public function getDataPelatih()
+    {
+        $data = DataPelatih::all();
+        return response()->json([
+            'data' => $data
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
