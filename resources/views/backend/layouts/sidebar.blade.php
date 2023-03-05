@@ -17,9 +17,7 @@
                         <img src="{{ asset('backend/img/placeholders/avatars/avatar2.jpg') }}" alt="avatar">
                     </a>
                 </div>
-                @if (Auth::user()->HasRole('user'))
-                    <div class="sidebar-user-name">John Doe</div>
-                @endif
+                <div class="sidebar-user-name">{{ ucfirst(Auth::user()->name) }}</div>
                 <div class="sidebar-user-links">
                     <a href="page_ready_user_profile.html" data-toggle="tooltip" data-placement="bottom"
                         title="Profile"><i class="gi gi-user"></i></a>
@@ -35,7 +33,7 @@
             <!-- Sidebar Navigation -->
             <ul class="sidebar-nav">
                 <li>
-                    <a href="index.html" class=" active"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span
+                    <a href="{{ route('dashboard') }}" class="{{ request()->segment(1) == 'dashboard' ? 'active' : '' }}"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span
                             class="sidebar-nav-mini-hide">Dashboard</span></a>
                 </li>
                 <li>
@@ -68,26 +66,26 @@
                     <span class="sidebar-header-title">Data Master</span>
                 </li>
 
-                <li>
+                <li class="{{ request()->segment(1) == 'pelanggan' || 'pelatih' || 'paket' || 'pengaduan' ? 'active' : '' }}">
                     <a href="#" class="sidebar-nav-menu"><i
                             class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i
                             class="gi gi-certificate sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Data
                             Master</span></a>
                     <ul>
                         <li>
-                            <a href="page_ui_grid_blocks.html">Data Pelangga</a>
+                            <a href="pelanggan" class="{{ request()->segment(1) == 'pelanggan' ? 'active' : '' }}">Data Pelanggan</a>
                         </li>
                         <li>
-                            <a href="page_ui_draggable_blocks.html">Data Paket Latihan</a>
+                            <a href="paket" class="{{ request()->segment(1) == 'paket' ? 'active' : '' }}">Data Paket Latihan</a>
                         </li>
                         <li>
-                            <a href="page_ui_draggable_blocks.html">Data Pengaduan</a>
+                            <a href="pengaduan" class="{{ request()->segment(1) == 'pengaduan' ? 'active' : '' }}">Data Pengaduan</a>
                         </li>
                         <li>
                             <a href="page_ui_draggable_blocks.html">Data Tutorial</a>
                         </li>
                         <li>
-                            <a href="page_ui_draggable_blocks.html">Data Pelatih</a>
+                            <a href="pelatih" class="{{ request()->segment(1) == 'pelatih' ? 'active' : '' }}">Data Pelatih</a>
                         </li>
                     </ul>
                 </li>

@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Backend\DataPaketLatihanController;
+use App\Http\Controllers\Backend\DataPelatihController;
+use App\Http\Controllers\Backend\DataPengaduanController;
+use App\Http\Controllers\Backend\PelangganController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,21 +19,43 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.dashboard');
 });
 
 Route::get('/masuk', function () {
     return view('backend.register');
 });
 
-Route::get('/dashboard', function () {
-    return view('backend.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::group(['middleware' => ['role:admin|user', 'auth']], function (){
+
+    // Dashboard
+    Route::get('/dashboard', function () {
+        return view('backend.dashboard');
+    })->name('dashboard');
+
+    // Data Pelanggan
+    Route::resource('pelanggan', PelangganController::class);
+
+    // Data Pelatih
+    Route::resource('pelatih', DataPelatihController::class);
+
+    // Data Paket Latihan
+    Route::resource('paket', DataPaketLatihanController::class);
+
+    // Data Pengaduan
+    Route::resource('pengaduan', DataPengaduanController::class);
+
+
+
+
 });
 
 require __DIR__ . '/auth.php';
