@@ -9,83 +9,11 @@
                 <div class="top_panel_top_user_area">
                     <ul id="menu_user" class="menu_user_nav">
                         <li class="menu_user_register">
-                            <a href="#popup_registration"
+                            <a href="{{ route('register') }}"
                                 class="popup_link popup_register_link icon-pencil">Register</a>
                         </li>
                         <li class="menu_user_login">
-                            <a href="#popup_login" class="popup_link popup_login_link icon-user">Login</a>
-                        </li>
-                        <li class="top_panel_top_search">
-                            <div class="search_wrap search_style_regular search_state_fixed">
-                                <div class="search_form_wrap">
-                                    <form role="search" method="get" class="search_form" action="#">
-                                        <button type="submit" class="search_submit icon-magnifier"
-                                            title="Start search"></button>
-                                        <input type="text" class="search_field" placeholder="Search" value=""
-                                            name="s" />
-                                    </form>
-                                </div>
-                                <div class="search_results widget_area scheme_original">
-                                    <a class="search_results_close icon-cancel"></a>
-                                    <div class="search_results_content"></div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="menu_user_cart">
-                            <a href="#" class="top_panel_cart_button">
-                                <span class="contact_icon icon-shopping-cart-2"></span>
-                                <span class="contact_label contact_cart_label">cart:</span>
-                                <span class="contact_cart_totals">
-                                    <span class="cart_items">2 Items</span>
-                                </span>
-                            </a>
-                            <ul class="widget_area sidebar_cart sidebar">
-                                <li>
-                                    <div class="widget woocommerce widget_shopping_cart">
-                                        <div class="hide_cart_widget_if_empty">
-                                            <div class="widget_shopping_cart_content">
-                                                <ul class="cart_list product_list_widget ">
-                                                    <li class="mini_cart_item">
-                                                        <a class="remove" title="Remove this item" href="#">×</a>
-                                                        <a href="shop-product-page.html">
-                                                            <img class="attachment-shop_thumbnail size-shop_thumbnail"
-                                                                alt="product" src="http://placehold.it/75x75">
-                                                            HEAD Instinct Junior 25 Prestrung Tennis
-                                                            Racquet
-                                                        </a>
-                                                        <span class="quantity">
-                                                            1 ×
-                                                            <span class="amount">£148.00</span>
-                                                        </span>
-                                                    </li>
-                                                    <li class="mini_cart_item">
-                                                        <a class="remove" title="Remove this item" href="#">×</a>
-                                                        <a href="shop-product-page.html">
-                                                            <img class="attachment-shop_thumbnail size-shop_thumbnail"
-                                                                alt="product" src="http://placehold.it/75x75">
-                                                            Penn Championship Extra Tennis Duty Balls
-                                                        </a>
-                                                        <span class="quantity">
-                                                            1 ×
-                                                            <span class="amount">£87.00</span>
-                                                        </span>
-                                                    </li>
-                                                </ul>
-                                                <p class="total">
-                                                    <strong>Subtotal:</strong>
-                                                    <span class="amount">£235.00</span>
-                                                </p>
-                                                <p class="buttons">
-                                                    <a class="button wc-forward" href="cart.html">View
-                                                        Cart</a>
-                                                    <a class="button checkout wc-forward"
-                                                        href="checkout.html">Checkout</a>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                            <a href="{{ route('login') }}" class="popup_link popup_login_link icon-user">Login</a>
                         </li>
                         <li class="top_panel_link">
                             <a href="court-reservation.html">Reserve a court</a>
@@ -130,78 +58,35 @@
                         <a href="#" class="menu_main_responsive_button icon-menu"></a>
                         <nav class="menu_main_nav_area">
                             <ul id="menu_main" class="menu_main_nav">
-                                <li class="menu-item current-menu-ancestor current-menu-parent menu-item-has-children">
+                                <li class="menu-item current-menu-item current_page_item">
                                     <a href="#">Home</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item current-menu-item current_page_item">
-                                            <a href="index.html">Home 1</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="homepage-2.html">Home 2</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="#">Pages</a>
-                                    <ul class="sub-menu">
-                                        <li class="menu-item">
-                                            <a href="typography.html">Typography</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="shortcodes.html">Shortcodes</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="page-404.html">404</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="about-us.html">About Us</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="our-team.html">Our Team</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="player-profile.html">Player&#8217;s Profile</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="reservation.html">Reservation</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="events-calendar.html">Tournaments</a>
-                                        </li>
-                                    </ul>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="membership.html">Membership</a>
+                                    <a href="#">Tutorial</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="tennis-lessons.html">Lessons</a>
+                                    <a href="#">Jadwal Kegiatan</a>
                                 </li>
-                                <li class="menu-item menu-item-has-children">
-                                    <a href="#">News</a>
+                                <li class="menu-item" class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
+                                    <a href="daftar">Pendaftaran</a>
+                                </li>
+                                <li class="menu-item" class="{{ request()->segment(1) == 'aduan' ? 'current-menu-item current_page_item' : '' }}">
+                                    <a href="aduan">Pengaduan</a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="#">Profil</a>
+                                </li>
+                                {{-- <li class="menu-item menu-item-has-children">
+                                    <a href="#">Profil</a>
                                     <ul class="sub-menu">
                                         <li class="menu-item">
-                                            <a href="blog-classic.html">Classic</a>
+                                            <a href="typography.html">Pelatih</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="blog-colored-excerpt.html">Colored Excerpt</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="blog-masonry.html">Masonry</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="blog-portfolio.html">Portfolio</a>
-                                        </li>
-                                        <li class="menu-item">
-                                            <a href="post-formats.html">Post Formats</a>
+                                            <a href="shortcodes.html">User</a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="shop.html">Pro Shop</a>
-                                </li>
-                                <li class="menu-item">
-                                    <a href="contacts.html">Contacts</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </nav>
                     </div>
@@ -315,7 +200,7 @@
                 </div>
             </div>
             <div class="login">
-                <a href="#popup_login" class="popup_link popup_login_link">Login</a>
+                <a href="{{ route('login') }}" class="popup_link popup_login_link">Login</a>
             </div>
         </div>
         <div class="panel_bottom">
