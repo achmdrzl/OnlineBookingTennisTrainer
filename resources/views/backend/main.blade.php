@@ -14,6 +14,7 @@
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
@@ -62,46 +63,6 @@
                 <!-- Header -->
 
                 <header class="navbar navbar-default">
-                    <!-- Left Header Navigation -->
-                    <ul class="nav navbar-nav-custom">
-                        <!-- Main Sidebar Toggle Button -->
-                        <li>
-                            <a href="javascript:void(0)" onclick="App.sidebar('toggle-sidebar');this.blur();">
-                                <i class="fa fa-bars fa-fw"></i>
-                            </a>
-                        </li>
-                        <!-- END Main Sidebar Toggle Button -->
-
-                        <!-- Template Options -->
-                        <!-- Change Options functionality can be found in j/app.s - templateOptions() -->
-                        <li class="dropdown">
-                            <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="gi gi-settings"></i>
-                            </a>
-                            <ul class="dropdown-menu dropdown-custom dropdown-options">
-                                <li class="dropdown-header text-center">Header Style</li>
-                                <li>
-                                    <div class="btn-group btn-group-justified btn-group-sm">
-                                        <a href="javascript:void(0)" class="btn btn-primary"
-                                            id="options-header-default">Light</a>
-                                        <a href="javascript:void(0)" class="btn btn-primary"
-                                            id="options-header-inverse">Dark</a>
-                                    </div>
-                                </li>
-                                <li class="dropdown-header text-center">Page Style</li>
-                                <li>
-                                    <div class="btn-group btn-group-justified btn-group-sm">
-                                        <a href="javascript:void(0)" class="btn btn-primary"
-                                            id="options-main-style">Default</a>
-                                        <a href="javascript:void(0)" class="btn btn-primary"
-                                            id="options-main-style-alt">Alternative</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- END Template Options -->
-                    </ul>
-                    <!-- END Left Header Navigation -->
 
                     <!-- Right Header Navigation -->
                     <ul class="nav navbar-nav-custom pull-right">
@@ -130,31 +91,7 @@
                 <!-- END Header -->
 
                 <!-- Page content -->
-                <div id="page-content">
-                    <!-- Dashboard Header -->
-                    <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
-                    <div class="content-header content-header-media">
-                        <div class="header-section">
-                            <div class="row">
-                                <!-- Main Title (hidden on small devices for the statistics to fit) -->
-                                <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
-                                    <h1>Welcome <strong>Admin</strong><br><small>You Look Awesome!</small></h1>
-                                </div>
-                                <!-- END Main Title -->
-                            </div>
-                        </div>
-                        <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
-                        <img src="{{ asset('backend/img/placeholders/headers/dashboard_header.jpg') }}"
-                            alt="header image" class="animation-pulseSlow">
-                    </div>
-                    <!-- END Dashboard Header -->
-
-                    <!-- Mini Top Stats Row -->
-                    <div class="row">
-                        @yield('content')
-                    </div>
-                    <!-- END Mini Top Stats Row -->
-                </div>
+                @yield('content')
                 <!-- END Page Content -->
 
                 <!-- Footer -->
@@ -164,8 +101,8 @@
                             target="_blank">pixelcave</a>
                     </div>
                     <div class="pull-left">
-                        <span id="year-copy"></span> &copy; <a href="https://1.envato.market/x4R"
-                            target="_blank">ProUI 3.8</a>
+                        <span id="year-copy"></span> &copy; <a href="https://1.envato.market/x4R" target="_blank">ProUI
+                            3.8</a>
                     </div>
                 </footer>
                 <!-- END Footer -->
@@ -265,15 +202,12 @@
     <!-- For more info please have a look at https://developers.google.com/maps/documentation/javascript/get-api-key#key -->
     <script src="https://maps.googleapis.com/maps/api/js?key="></script>
     <script src="{{ asset('backend/js/helpers/gmaps.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     @stack('script-alt')
 
     <!-- Load and execute javascript code used only in this page -->
     <script src="{{ asset('backend/js/pages/index.js') }}"></script>
-    <script>
-        $(function() {
-            Index.init();
-        });
-    </script>
 </body>
 
 </html>
