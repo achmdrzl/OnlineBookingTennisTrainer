@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <title>Tennis Club</title>
@@ -46,7 +47,7 @@
         media="all" />
     <link rel="stylesheet" href="{{ asset('frontend/js/magnific/magnific-popup.min.css') }}" type="text/css"
         media="all" />
-
+    @stack('style-alt')
     <link rel="stylesheet" href="{{ asset('frontend/css/core.portfolio.min.css') }}" type="text/css" media="all" />
     <link rel="stylesheet" href="{{ asset('frontend/js/swiper/swiper.min.css') }}" type="text/css" media="all" />
 </head>
@@ -104,7 +105,8 @@
 
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?key="></script>
     <script type="text/javascript" src="{{ asset('frontend/js/core.googlemap.min.js') }}"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @stack('script-alt')
 </body>
 
 </html>

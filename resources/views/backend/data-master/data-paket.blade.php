@@ -38,11 +38,11 @@
                         <tr>
                             <th class="text-center">No</th>
                             <th>Nama Paket</th>
-                            <th>Jumlah Pelatih</th>
-                            <th>Jumlah Asisten</th>
-                            <th>Jumlah Ballboy</th>
+                            <th>Tanggal Mulai</th>
+                            <th>Tanggal Akhir</th>
                             <th>Harga</th>
                             <th>Durasi</th>
+                            <th>Kuota</th>
                             <th>Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -79,33 +79,63 @@
                     </div>
                     <div class="form-group">
                         <label for="jml_pelatih">Jumlah Pelatih</label>
-                        <input type="text" id="jml_pelatih" name="jml_pelatih" class="form-control"
+                        <input type="number" id="jml_pelatih" name="jml_pelatih" class="form-control"
                             placeholder="Enter Jumlah Pelatih..">
                         <span class="help-block">Please enter jumlah pelatih</span>
                     </div>
                     <div class="form-group">
                         <label for="jml_asisten">Jumlah Asisten</label>
-                        <input type="text" id="jml_asisten" name="jml_asisten" class="form-control"
+                        <input type="number" id="jml_asisten" name="jml_asisten" class="form-control"
                             placeholder="Enter Jumlah Asisten..">
                         <span class="help-block">Please enter your jumlah asisten</span>
                     </div>
                     <div class="form-group">
                         <label for="jml_ballboy">Jumlah Ballboy</label>
-                        <input type="text" id="jml_ballboy" name="jml_ballboy" class="form-control"
+                        <input type="number" id="jml_ballboy" name="jml_ballboy" class="form-control"
                             placeholder="Enter Jumlah Ballboy..">
                         <span class="help-block">Please enter jumlah bllboy</span>
                     </div>
                     <div class="form-group">
+                        <label for="tgl_start">Tanggal Mulai</label>
+                        <input type="date" id="tgl_start" name="tgl_start" class="form-control"
+                            placeholder="Enter Tanggal Mulai..">
+                        <span class="help-block">Please enter tanggal mulai</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="tgl_end">Tanggal Berakhir</label>
+                        <input type="date" id="tgl_end" name="tgl_end" class="form-control"
+                            placeholder="Enter Tanggal Berakhir..">
+                        <span class="help-block">Please enter tanggal berakhir</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="time_start">Waktu Mulai</label>
+                        <input type="time" id="time_start" name="time_start" class="form-control"
+                            placeholder="Enter Waktu Mulai..">
+                        <span class="help-block">Please enter waktu mulai</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="time_end">Waktu Berakhir</label>
+                        <input type="time" id="time_end" name="time_end" class="form-control"
+                            placeholder="Enter Waktu Berakhir..">
+                        <span class="help-block">Please enter waktu berakhir</span>
+                    </div>
+                    <div class="form-group">
                         <label for="durasi">Durasi Latihan</label>
-                        <input type="text" id="durasi" name="durasi" class="form-control"
+                        <input type="number" id="durasi" name="durasi" class="form-control"
                             placeholder="Enter Durasi Latihan..">
                         <span class="help-block">Please enter durasi latihan</span>
                     </div>
                     <div class="form-group">
                         <label for="harga">Harga Paket</label>
-                        <input type="text" id="harga" name="harga" class="form-control"
+                        <input type="number" id="harga" name="harga" class="form-control"
                             placeholder="Enter Harga Paket..">
                         <span class="help-block">Please enter harga paket</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="kuota">Kuota Paket</label>
+                        <input type="number" id="kuota" name="kuota" class="form-control"
+                            placeholder="Enter Jumlah Kuota..">
+                        <span class="help-block">Please enter jumlah kuota</span>
                     </div>
                     <div class="form-group form-actions">
                         <button type="submit" class="btn btn-sm btn-primary" id="saveBtn" value="create"><i
@@ -136,7 +166,10 @@
 @endpush
 
 <script>
+
     $(document).ready(function() {
+
+        // $('#harga').formatCurrency();
 
         $.ajaxSetup({
             headers: {
@@ -158,16 +191,12 @@
                     name: 'nama_paket'
                 },
                 {
-                    data: 'jml_pelatih',
-                    name: 'jml_pelatih'
+                    data: 'tgl_start',
+                    name: 'tgl_start'
                 },
                 {
-                    data: 'jml_asisten',
-                    name: 'jml_asisten'
-                },
-                {
-                    data: 'jml_ballboy',
-                    name: 'jml_ballboy'
+                    data: 'tgl_end',
+                    name: 'tgl_end'
                 },
                 {
                     data: 'harga',
@@ -176,6 +205,10 @@
                 {
                     data: 'durasi',
                     name: 'durasi'
+                },
+                {
+                    data: 'kuota',
+                    name: 'kuota'
                 },
                 {
                     data: 'status',
@@ -190,7 +223,7 @@
             ]
         });
 
-        // Create New Pelanggan.
+        // Create Data Paket Latihan.
         $('#btn-create-paket').click(function() {
             $('#saveBtn').val("create-paket");
             $('#paket_id').val('');
@@ -213,8 +246,13 @@
                     jml_pelatih: $('#jml_pelatih').val(),
                     jml_asisten: $('#jml_asisten').val(),
                     jml_ballboy: $('#jml_ballboy').val(),
+                    tgl_start: $('#tgl_start').val(),
+                    tgl_end: $('#tgl_end').val(),
+                    time_start: $('#time_start').val(),
+                    time_end: $('#time_end').val(),
                     harga: $('#harga').val(),
                     durasi: $('#durasi').val(),
+                    kuota: $('#kuota').val(),
                 },
                 // data: $('#supplierForm').serialize(),
                 type: "POST",
@@ -253,21 +291,49 @@
             });
         });
 
-        // Edit Data Pelanggan
+        // Edit Data Paket Latihan
         $('body').on('click', '.edit-paket', function() {
             var paket_id = $(this).data('id');
             $.get("{{ route('paket.index') }}" + '/' + paket_id + '/edit', function(
                 data) {
-                $('#modelHeading').html("EDIT DATA PELANGGAN");
-                $('#saveBtn').val("edit-user");
+                $('#modelHeading').html("EDIT DATA PAKET LATIHAN");
+                $('#saveBtn').val("edit-user").attr('disabled', false);
                 $('#ajaxModel').modal('show');
                 $('#paket_id').val(data.id);
-                $('#nama_paket').val(data.nama_paket);
-                $('#jml_pelatih').val(data.jml_pelatih);
-                $('#jml_asisten').val(data.jml_asisten);
-                $('#jml_ballboy').val(data.jml_ballboy);
-                $('#durasi').val(data.durasi);
-                $('#harga').val(data.harga);
+                $('#nama_paket').val(data.nama_paket).attr('disabled', false);
+                $('#jml_pelatih').val(data.jml_pelatih).attr('disabled', false);
+                $('#jml_asisten').val(data.jml_asisten).attr('disabled', false);
+                $('#jml_ballboy').val(data.jml_ballboy).attr('disabled', false);
+                $('#tgl_start').val(data.tgl_start).attr('disabled', false);
+                $('#tgl_end').val(data.tgl_end).attr('disabled', false);
+                $('#time_start').val(data.time_start).attr('disabled', false);
+                $('#time_end').val(data.time_end).attr('disabled', false);
+                $('#durasi').val(data.durasi).attr('disabled', false);
+                $('#harga').val(data.harga).attr('disabled', false);
+                $('#kuota').val(data.kuota).attr('disabled', false);
+            })
+        });
+
+        // Show Data Paket Latihan
+        $('body').on('click', '#show-paket', function() {
+            var paket_id = $(this).data('id');
+            $.get("{{ route('paket.index') }}" + '/' + paket_id + '/edit', function(
+                data) {
+                $('#modelHeading').html("SHOW DATA PAKET LATIHAN");
+                $('#saveBtn').val("show-paket").attr('disabled', true);
+                $('#ajaxModel').modal('show');
+                $('#paket_id').val(data.id);
+                $('#nama_paket').val(data.nama_paket).attr('disabled', true);
+                $('#jml_pelatih').val(data.jml_pelatih).attr('disabled', true);
+                $('#jml_asisten').val(data.jml_asisten).attr('disabled', true);
+                $('#jml_ballboy').val(data.jml_ballboy).attr('disabled', true);
+                $('#tgl_start').val(data.tgl_start).attr('disabled', true);
+                $('#tgl_end').val(data.tgl_end).attr('disabled', true);
+                $('#time_start').val(data.time_start).attr('disabled', true);
+                $('#time_end').val(data.time_end).attr('disabled', true);
+                $('#durasi').val(data.durasi).attr('disabled', true);
+                $('#harga').val(data.harga).attr('disabled', true);
+                $('#kuota').val(data.kuota).attr('disabled', true);
             })
         });
 

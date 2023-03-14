@@ -82,9 +82,6 @@
                             <a href="pengaduan" class="{{ request()->segment(1) == 'pengaduan' ? 'active' : '' }}">Data Pengaduan</a>
                         </li>
                         <li>
-                            <a href="page_ui_draggable_blocks.html">Data Tutorial</a>
-                        </li>
-                        <li>
                             <a href="pelatih" class="{{ request()->segment(1) == 'pelatih' ? 'active' : '' }}">Data Pelatih</a>
                         </li>
                     </ul>
@@ -93,8 +90,12 @@
                     <span class="sidebar-header-title">Data Transaksi</span>
                 </li>
                 <li>
-                    <a href="page_widgets_social.html"><i class="gi gi-share_alt sidebar-nav-icon"></i><span
+                    <a href="{{ route('transaksi.index') }}"><i class="gi gi-share_alt sidebar-nav-icon"></i><span
                             class="sidebar-nav-mini-hide">Transaksi</span></a>
+                </li>
+                <li>
+                    <a href="page_widgets_social.html"><i class="gi gi-repeat sidebar-nav-icon"></i><span
+                            class="sidebar-nav-mini-hide">History Transaksi</span></a>
                 </li>
             </ul>
             <!-- END Sidebar Navigation -->

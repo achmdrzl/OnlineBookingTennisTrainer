@@ -26,6 +26,13 @@ class DataPelatihController extends Controller
                 ->addColumn('pengalaman', function ($pelatih) {
                     return ucfirst($pelatih->pengalaman);
                 })
+                ->addColumn('img_pelatih', function ($pelatih) {
+                    $url = asset('storage/uploads/img/' . $pelatih->img_pelatih);
+                    if ($pelatih->img_pelatih == null) {
+                    } else {
+                        return '<img src="' . $url . '" width="80px" class="img-rounded" align="center" />';
+                    }
+                })
                 ->addColumn('status', function ($pelatih) {
                     if ($pelatih->status == 'aktif') {
                         return '<div class="btn btn-primary">' . ucfirst($pelatih->status) . '</div>';
@@ -52,7 +59,7 @@ class DataPelatihController extends Controller
 
                     return $btn;
                 })
-                ->rawColumns(['status', 'action'])
+                ->rawColumns(['img_pelatih', 'status', 'action'])
                 ->make(true);
         }
 
@@ -84,6 +91,7 @@ class DataPelatihController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_pelatih' => 'required',
             'pengalaman' => 'required',
+            'img_pelatih' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         //check if validation fails
@@ -91,12 +99,44 @@ class DataPelatihController extends Controller
             return response()->json(['errors' => $validator->errors()->all()]);
         }
 
-        $user = DataPelatih::updateOrCreate([
-            'id' => $request->id
-        ], [
-            'nama_pelatih' => $request->nama_pelatih,
-            'pengalaman' => $request->pengalaman,
-        ]);
+        // return response()->json($request->all());
+
+        if ($image = $request->file('img_pelatih')) {
+
+            $fileName = time() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('uploads/img/', $fileName, 'public');
+            $nama_pelatih = $request->input('nama_pelatih');
+            $pengalaman = $request->input('pengalaman');
+
+            // Store Data or Update Data
+            $user = DataPelatih::updateOrCreate([
+                'id' => $request->input('pelatih_id'),
+            ], [
+                'nama_pelatih' => $nama_pelatih,
+                'pengalaman' => $pengalaman,
+                'img_pelatih' => $fileName
+            ]);
+        } else {
+
+            $nama_pelatih = $request->input('nama_pelatih');
+            $pengalaman = $request->input('pengalaman');
+
+            // Store Data or Update Data
+            $user = DataPelatih::updateOrCreate([
+                'id' => $request->input('pelatih_id'),
+            ], [
+                'nama_pelatih' => $nama_pelatih,
+                'pengalaman' => $pengalaman,
+            ]);
+        }
+
+        // if ($request->hasFile('img_pelatih')) {
+
+        //     $file = $request->file('img_pelatih');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $filename = time() . '-' . $extension;
+        //     $file->move('uploads/img/', $filename);
+        // }
 
         //return response
         return response()->json([

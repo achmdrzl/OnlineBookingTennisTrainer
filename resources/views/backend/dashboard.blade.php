@@ -13,7 +13,6 @@
                     <div class="col-md-4 col-lg-6 hidden-xs hidden-sm">
                         <h1>Welcome <strong>{{ ucfirst(Auth::user()->name) }}</strong><br><small>You Look Awesome!</small>
                         </h1>
-
                     </div>
                     <!-- END Main Title -->
                 </div>
@@ -114,7 +113,7 @@
                         </div>
                         <div class="pull-right">
                             <!-- Jquery Sparkline (initialized in js
-                                                                                /pages/index.s), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
+                                                                                            /pages/index.s), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
                             <span id="mini-chart-brand"></span>
                         </div>
                         <h3 class="widget-content animation-pullDown visible-lg">
