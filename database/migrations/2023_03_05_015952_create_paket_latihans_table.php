@@ -17,8 +17,13 @@ return new class extends Migration
             $table->integer('jml_pelatih')->nullable();
             $table->integer('jml_asisten')->nullable();
             $table->integer('jml_ballboy')->nullable();
+            $table->date('tgl_start');
+            $table->date('tgl_end');
+            $table->time('time_start');
+            $table->time('time_end');
             $table->integer('durasi')->nullable();
             $table->integer('harga')->nullable();
+            $table->integer('kuota')->nullable();
             $table->string('status')->default('aktif');
             $table->timestamps();
         });

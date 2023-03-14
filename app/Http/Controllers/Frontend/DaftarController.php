@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\PaketLatihan;
 use Illuminate\Http\Request;
 
 class DaftarController extends Controller
@@ -12,7 +13,14 @@ class DaftarController extends Controller
      */
     public function index()
     {
-        return view('frontend.pages.pendaftaran');
+        $paket = PaketLatihan::where('status', 'aktif')->get();
+        $totalCoulumn = PaketLatihan::count();
+        return view('frontend.pages.pendaftaran', compact('paket', 'totalCoulumn'));
+    }
+
+    public function homepage()
+    {
+        return view('frontend.dashboard');
     }
 
     /**
@@ -20,7 +28,7 @@ class DaftarController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**

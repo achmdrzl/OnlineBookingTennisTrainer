@@ -2417,8 +2417,7 @@ ul.sc_list_style_iconed .icon-circle::before{
 .sc_price_block .sc_price_block_description {
 	text-align:center;
 	font-size: 1em;
-	line-height: 1.3em;
-	height:5.2857em;
+	height:150px;
 	padding:0 2em;
 	overflow:hidden;
 	font-weight: 600;

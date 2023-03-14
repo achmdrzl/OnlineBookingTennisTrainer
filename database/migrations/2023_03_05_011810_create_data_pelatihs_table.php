@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_pelatih', 50);
             $table->text('pengalaman');
+            $table->string('img_pelatih', 100);
             $table->string('status', 25)->default('aktif');
             $table->timestamps();
         });

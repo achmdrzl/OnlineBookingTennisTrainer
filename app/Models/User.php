@@ -51,4 +51,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(DataPengaduan::class);
     }
+
+    public function biodata()
+    {
+        return $this->hasMany(Customer::class, 'user_id');
+    }
+
+    public function order()
+    {
+        return $this->hasMany(Transaksi::class, 'user_id');
+    }
 }

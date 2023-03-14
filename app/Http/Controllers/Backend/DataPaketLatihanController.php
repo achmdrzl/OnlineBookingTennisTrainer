@@ -48,10 +48,12 @@ class DataPaketLatihanController extends Controller
                         $button = '<i class="fa fa-undo"></i>';
                     }
 
-                    $btn = '<button id="edit-paket" data-id="' . $paket->id . '" title="Edit" class="btn btn-default edit-paket"><i class="fa fa-pencil"></i></button>';
+                    $btn = '<button href="booking/'.$paket->id.'" id="edit-paket" data-id="' . $paket->id . '" title="Edit" class="btn btn-default edit-paket"><i class="fa fa-pencil"></i></button>';
 
 
                     $btn = $btn . ' <button id="delete-paket" data-id="' . $paket->id . '" class="btn btn-' . $class . ' btn-md" title="' . $title . '">' . $button . '</button>';
+
+                    $btn = $btn . ' <button id="show-paket" data-id="' . $paket->id . '" class="btn btn-primary btn-md" title="Show"><i class="fa fa-eye"></i></button>';
 
                     return $btn;
                 })
@@ -81,6 +83,11 @@ class DataPaketLatihanController extends Controller
             'jml_pelatih' => 'required',
             'jml_asisten' => 'required',
             'jml_ballboy' => 'required',
+            'tgl_start' => 'required',
+            'tgl_end' => 'required',
+            'time_start' => 'required',
+            'time_end' => 'required',
+            'kuota' => 'required',
             'harga' => 'required',
             'durasi' => 'required',
         ]);
@@ -97,8 +104,13 @@ class DataPaketLatihanController extends Controller
             'jml_pelatih' => $request->jml_pelatih,
             'jml_asisten' => $request->jml_asisten,
             'jml_ballboy' => $request->jml_ballboy,
+            'tgl_start' => $request->tgl_start,
+            'tgl_end' => $request->tgl_end,
+            'time_start' => $request->time_start,
+            'time_end' => $request->time_end,
             'durasi' => $request->durasi,
             'harga' => $request->harga,
+            'kuota' => $request->kuota,
         ]);
 
         //return response
