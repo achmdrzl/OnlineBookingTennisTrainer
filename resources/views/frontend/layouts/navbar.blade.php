@@ -70,9 +70,9 @@
                                 <li class="menu-item">
                                     <a href="#">Tutorial</a>
                                 </li>
-                                <li class="menu-item">
+                                {{-- <li class="menu-item">
                                     <a href="#">Jadwal Kegiatan</a>
-                                </li>
+                                </li> --}}
                                 <li class="menu-item"
                                     class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
                                     <a href="{{ route('daftar.index') }}">Pendaftaran</a>
@@ -84,7 +84,7 @@
                                     </li>
                                 @endif
                                 <li class="menu-item">
-                                    <a href="#">Profil</a>
+                                    <a href="{{ route('pelatih.index') }}">Profil Pelatih</a>
                                 </li>
                                 @if (Auth::check())
                                     <li class="menu-item">
@@ -138,9 +138,9 @@
                     <li class="menu-item">
                         <a href="#">Tutorial</a>
                     </li>
-                    <li class="menu-item">
+                    {{-- <li class="menu-item">
                         <a href="#">Jadwal Kegiatan</a>
-                    </li>
+                    </li> --}}
                     <li class="menu-item"
                         class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
                         <a href="{{ route('daftar.index') }}">Pendaftaran</a>
@@ -150,7 +150,7 @@
                         <a href="{{ route('aduan.index') }}">Pengaduan</a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">Profil</a>
+                        <a href="#">Profil Pelatih</a>
                     </li>
                 </ul>
             </nav>
@@ -168,7 +168,7 @@
             </div>
             @if (Auth::check())
                 <div class="login">
-                    <a href="{{ route('register') }}" class="popup_link popup_login_link">Profile</a>
+                    <a href="{{ route('profile.index') }}" class="popup_link popup_login_link">Profile</a>
                 </div>
             @else
                 <div class="login">
