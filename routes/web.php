@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\TransaksiController;
 use App\Http\Controllers\Frontend\AduanControllerr;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\DaftarController;
+use App\Http\Controllers\Frontend\PelatihController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Models\Transaksi;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,7 @@ Route::group(['middleware' => ['role:admin', 'auth']], function () {
 Route::resource('daftar', DaftarController::class);
 Route::resource('aduan', AduanControllerr::class);
 Route::resource('profile', ProfileController::class);
+Route::resource('pelatih', PelatihController::class);
 
 Route::group(['middleware' => ['role:user', 'auth']], function () {
     Route::get('/checkout/{id}', CheckoutController::class . '@checkout')->name('checkout');

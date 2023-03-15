@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('jenis_kelamin', 50)->nullable();
             $table->string('status', 150)->nullable();
             $table->string('pengalaman_tennis', 150)->nullable();
-            $table->string('nohp');
+            $table->string('nohp')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->timestamps();

@@ -22,14 +22,14 @@
             <div class="block-title">
                 <h2><strong>Data</strong> Pelanggan</h2>
             </div>
-            <div>
+            {{-- <div>
                 <div class="col">
                     <button style="margin-bottom:10px" type="button" class="btn btn-info btn-sm mt-2" data-toggle="modal"
                         data-target="#modal-create" id="btn-create-user"><i class="fa fa-plus"></i>
                         Tambah
                         Data</button>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="table-responsive">
                 <table id="example-datatable" class="table datatable table-center table-condensed table-bordered"
