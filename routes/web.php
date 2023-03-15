@@ -25,10 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.dashboard');
-});
-
-
-
+})->name('homepage');
 
 Route::group(['middleware' => ['role:admin', 'auth']], function () {
 

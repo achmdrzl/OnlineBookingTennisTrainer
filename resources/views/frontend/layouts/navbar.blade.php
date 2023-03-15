@@ -65,7 +65,7 @@
                         <nav class="menu_main_nav_area">
                             <ul id="menu_main" class="menu_main_nav">
                                 <li class="menu-item current-menu-item current_page_item">
-                                    <a href="#">Home</a>
+                                    <a href="{{ route('homepage') }}">Home</a>
                                 </li>
                                 <li class="menu-item">
                                     <a href="#">Tutorial</a>
@@ -133,7 +133,7 @@
             <nav class="menu_main_nav_area">
                 <ul id="menu_main_mobile" class="menu_main_nav">
                     <li class="menu-item current-menu-item current_page_item">
-                        <a href="#">Home</a>
+                        <a href="{{ route('homepage') }}">Home</a>
                     </li>
                     <li class="menu-item">
                         <a href="#">Tutorial</a>
