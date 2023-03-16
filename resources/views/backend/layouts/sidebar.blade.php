@@ -36,7 +36,7 @@
                     <a href="{{ route('dashboard') }}" class="{{ request()->segment(1) == 'dashboard' ? 'active' : '' }}"><i class="gi gi-stopwatch sidebar-nav-icon"></i><span
                             class="sidebar-nav-mini-hide">Dashboard</span></a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="#" class="sidebar-nav-menu"><i
                             class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i
                             class="gi gi-shopping_cart sidebar-nav-icon"></i><span
@@ -61,12 +61,12 @@
                             <a href="page_ecom_customer_view.html">Customer View</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="sidebar-header">
                     <span class="sidebar-header-title">Data Master</span>
                 </li>
 
-                <li class="{{ request()->segment(1) == 'pelanggan' || 'pelatih' || 'paket' || 'pengaduan' ? 'active' : '' }}">
+                <li class="{{ request()->segment(1) == 'pelanggan' || 'dataPelatih' || 'paket' || 'pengaduan' ? 'active' : '' }}">
                     <a href="#" class="sidebar-nav-menu"><i
                             class="fa fa-angle-left sidebar-nav-indicator sidebar-nav-mini-hide"></i><i
                             class="gi gi-certificate sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Data
@@ -82,7 +82,7 @@
                             <a href="pengaduan" class="{{ request()->segment(1) == 'pengaduan' ? 'active' : '' }}">Data Pengaduan</a>
                         </li>
                         <li>
-                            <a href="pelatih" class="{{ request()->segment(1) == 'pelatih' ? 'active' : '' }}">Data Pelatih</a>
+                            <a href="dataPelatih" class="{{ request()->segment(1) == 'dataPelatih' ? 'active' : '' }}">Data Pelatih</a>
                         </li>
                     </ul>
                 </li>
