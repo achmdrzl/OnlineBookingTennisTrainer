@@ -140,7 +140,7 @@
         var table = $('.datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('pelatih.index') }}",
+            ajax: "{{ route('dataPelatih.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
@@ -235,7 +235,7 @@
             formData.append('pelatih_id', id);
 
             $.ajax({
-                url: "{{ route('pelatih.store') }}",
+                url: "{{ route('dataPelatih.store') }}",
                 data: formData,
                 cache: false,
                 processData: false,
@@ -280,7 +280,7 @@
         // Edit Data Pelanggan
         $('body').on('click', '.edit-pelatih', function() {
             var pelatih_id = $(this).data('id');
-            $.get("{{ route('pelatih.index') }}" + '/' + pelatih_id + '/edit', function(
+            $.get("{{ route('dataPelatih.index') }}" + '/' + pelatih_id + '/edit', function(
                 data) {
                 $('#modelHeading').html("EDIT DATA PELANGGAN");
                 $('#saveBtn').val("edit-user");
@@ -315,7 +315,7 @@
                         var pelatih_id = $(this).data("id");
                         $.ajax({
                             type: "DELETE",
-                            url: 'pelatih/' + pelatih_id,
+                            url: 'dataPelatih/' + pelatih_id,
                             data: pelatih_id,
                             success: function(response) {
                                 swal(response.status, {

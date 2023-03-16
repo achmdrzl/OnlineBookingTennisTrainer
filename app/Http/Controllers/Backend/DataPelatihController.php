@@ -91,7 +91,7 @@ class DataPelatihController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_pelatih' => 'required',
             'pengalaman' => 'required',
-            'img_pelatih' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'img_pelatih' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         //check if validation fails

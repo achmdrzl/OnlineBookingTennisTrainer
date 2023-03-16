@@ -39,7 +39,7 @@ Route::group(['middleware' => ['role:admin', 'auth']], function () {
     Route::resource('pelanggan', PelangganController::class);
 
     // Data Pelatih
-    Route::resource('pelatih', DataPelatihController::class);
+    Route::resource('dataPelatih', DataPelatihController::class);
     Route::get('/getDataPelatih', DataPelatihController::class . '@getDataPelatih');
 
     // Data Paket Latihan
