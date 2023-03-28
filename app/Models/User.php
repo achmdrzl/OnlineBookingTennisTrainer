@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'status',
-        'level'
+        'level',
+        'nohp'
     ];
 
     /**
@@ -49,7 +50,7 @@ class User extends Authenticatable
 
     public function pengadu()
     {
-        return $this->belongsTo(DataPengaduan::class);
+        return $this->hasMany(DataPengaduan::class);
     }
 
     public function biodata()

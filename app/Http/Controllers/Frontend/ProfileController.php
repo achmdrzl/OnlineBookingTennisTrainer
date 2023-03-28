@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\Transaksi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = User::with(['biodata'])->where('id', Auth::user()->id)->first();
+        $dataOrder = Transaksi::where('user_id', Auth::user()->id)->get();
 
-        return view('frontend.pages.profile', compact('user'));
+        return view('frontend.pages.profile', compact('user', 'dataOrder'));
     }
 
     /**
@@ -38,6 +40,7 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
+            'nohp' => 'required',
             'umur' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
@@ -46,6 +49,18 @@ class ProfileController extends Controller
         ]);
 
         $id = Auth::user()->id;
+
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $nohp = $request->input('nohp');
+
+        $user = User::find($id);
+        // Update Data Model User
+        $user->update([
+            'name' => $name,
+            'email' => $email,
+            'nohp' => $nohp,
+        ]);
 
         $dataUser = Customer::where('user_id', $id)->first();
         $dataUser->update([
@@ -64,12 +79,14 @@ class ProfileController extends Controller
         $id = Auth::user()->id;
         $name = $request->input('name');
         $email = $request->input('email');
+        $nohp = $request->input('nohp');
 
         $user = User::find($id);
         // Update Data Model User
         $user->update([
             'name' => $name,
             'email' => $email,
+            'nohp' => $nohp,
         ]);
 
         //return response

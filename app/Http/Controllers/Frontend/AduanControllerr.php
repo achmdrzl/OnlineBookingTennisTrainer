@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\DataPengaduan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AduanControllerr extends Controller
 {
@@ -13,6 +16,11 @@ class AduanControllerr extends Controller
     public function index()
     {
         return view('frontend.pages.pengaduan');
+    }
+
+    public function aduanSuccess()
+    {
+        return view('frontend.pages.aduanSukses');
     }
 
     /**
@@ -28,7 +36,28 @@ class AduanControllerr extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //define validation rules
+        $validator = Validator::make($request->all(), [
+            'subjek' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        //check if validation fails
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()->all()]);
+        }
+
+        DataPengaduan::create([
+            'user_id' => $request->input('user_id'),
+            'subjek' => $request->input('subjek'),
+            'deskripsi' => $request->input('deskripsi'),
+        ]);
+
+        //return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Berhasil Disimpan!',
+        ]);
     }
 
     /**

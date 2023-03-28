@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\DataPengaduan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
 class DataPengaduanController extends Controller
@@ -25,28 +26,34 @@ class DataPengaduanController extends Controller
                 ->addColumn('email', function ($pengaduan) {
                     return strtoupper($pengaduan->pengaduan->email);
                 })
+                ->addColumn('subjek', function ($pengaduan) {
+                    return strtoupper($pengaduan->subjek);
+                })
+                ->addColumn('deskripsi', function ($pengaduan) {
+                    return strtoupper($pengaduan->deskripsi);
+                })
                 ->addColumn('status', function ($pengaduan) {
-                    if ($pengaduan->status == 'aktif') {
-                        return '<div class="btn btn-primary">' . ucfirst($pengaduan->status) . '</div>';
-                    } else {
+                    if ($pengaduan->status == 'belum-selesai') {
+
+                        return '<div class="btn btn-warning">' . ucfirst($pengaduan->status) . '</div>';
+                    } elseif ($pengaduan->status == 'selesai') {
+
+                        return '<div class="btn btn-success">' . ucfirst($pengaduan->status) . '</div>';
+                    } elseif ($pengaduan->status == 'abaikan') {
+
                         return '<div class="btn btn-danger">' . ucfirst($pengaduan->status) . '</div>';
                     }
                 })
                 ->addColumn('action', function ($pengaduan) {
 
-                    if ($pengaduan->status == 'aktif') {
-                        $button = '<i class="fa fa-times"></i>';
-                        $class = 'danger';
-                        $title = 'Arsip';
+                    $btn = ' <button id="done-pengaduan" data-id="' . $pengaduan->id . '" class="btn btn-success btn-md" title="confirm"><i class="fa fa-check"></i></button>';
+
+                    $btn =  $btn . ' <button id="delete-pengaduan" data-id="' . $pengaduan->id . '" class="btn btn-danger btn-md" title="delete"><i class="fa fa-times"></i></button>';
+
+                    if ($pengaduan->status == 'selesai' || $pengaduan->status == 'abaikan') {
                     } else {
-                        $title = 'Aktifkan';
-                        $class = 'success';
-                        $button = '<i class="fa fa-undo"></i>';
+                        return $btn;
                     }
-
-                    $btn = ' <button id="delete-pengaduan" data-id="' . $pengaduan->id . '" class="btn btn-' . $class . ' btn-md" title="' . $title . '">' . $button . '</button>';
-
-                    return $btn;
                 })
                 ->rawColumns(['status', 'action'])
                 ->make(true);
@@ -68,7 +75,7 @@ class DataPengaduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**
@@ -92,7 +99,11 @@ class DataPengaduanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pengaduan = DataPengaduan::find($id);
+        $pengaduan->update([
+            'status' => 'selesai'
+        ]);
+        return response()->json(['status' => 'Berhasil Mengkonfirmasi Pengaduan!']);
     }
 
     /**
@@ -101,16 +112,9 @@ class DataPengaduanController extends Controller
     public function destroy(string $id)
     {
         $pengaduan = DataPengaduan::find($id);
-        if ($pengaduan->status == 'belum-selesai') {
-            $pengaduan->update([
-                'status' => 'telah selesai'
-            ]);
-            return response()->json(['status' => 'Berhasil Menyelesaikan Aduan!']);
-        } else {
-            $pengaduan->update([
-                'status' => 'belum-selesai'
-            ]);
-            return response()->json(['status' => 'Aduan di Batalkan Aduan!']);
-        }
+        $pengaduan->update([
+            'status' => 'abaikan'
+        ]);
+        return response()->json(['status' => 'Berhasil Mengabaikan Pengaduan!']);
     }
 }

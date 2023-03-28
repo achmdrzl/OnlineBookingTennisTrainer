@@ -7,28 +7,20 @@
         <div class="content-header">
             <div class="header-section">
                 <h1>
-                    <i class="fa fa-table"></i>Master Data<br><small>Data Paket Latihan</small>
+                    <i class="fa fa-table"></i>Master Data<br><small>Data Pengaduan Pelanggan</small>
                 </h1>
             </div>
         </div>
         <ul class="breadcrumb breadcrumb-top">
             <li>Master Data</li>
-            <li><a href="">Data Paket Latihan</a></li>
+            <li><a href="">Data Pengaduan Pelanggan</a></li>
         </ul>
         <!-- END Datatables Header -->
 
         <!-- Datatables Content -->
         <div class="block full">
             <div class="block-title">
-                <h2><strong>Data</strong> Paket Latihan</h2>
-            </div>
-            <div>
-                <div class="col">
-                    <button style="margin-bottom:10px" type="button" class="btn btn-info btn-sm mt-2" data-toggle="modal"
-                        data-target="#modal-create" id="btn-create-paket"><i class="fa fa-plus"></i>
-                        Tambah
-                        Data</button>
-                </div>
+                <h2><strong>Data</strong> Pengaduan Pelanggan</h2>
             </div>
 
             <div class="table-responsive">
@@ -39,9 +31,8 @@
                             <th class="text-center">No</th>
                             <th>Nama Pengadu</th>
                             <th>Email Pengadu</th>
+                            <th>Subjek</th>
                             <th>Deskripsi Aduan</th>
-                            <th>No Hp</th>
-                            <th>No Rek</th>
                             <th>Status</th>
                             <th class="text-center">Actions</th>
                         </tr>
@@ -102,16 +93,12 @@
                     name: 'user_id.email'
                 },
                 {
-                    data: 'deskripsi_aduan',
-                    name: 'deskripsi_aduan'
+                    data: 'subjek',
+                    name: 'subjek'
                 },
                 {
-                    data: 'nohp',
-                    name: 'nohp'
-                },
-                {
-                    data: 'norek',
-                    name: 'norek'
+                    data: 'deskripsi',
+                    name: 'deskripsi'
                 },
                 {
                     data: 'status',
@@ -126,15 +113,15 @@
             ]
         });
 
- 
 
 
-        // Arsipkan Data Pengaduan
+
+        // Decline Data
         $('body').on('click', '#delete-pengaduan', function() {
 
             swal({
-                    text: "Apakah anda yakin?",
-                    text: "Akan Mengkonfirmasi Bahwa Aduan Ini Telah Selesai!",
+                    title: "Apakah anda yakin?",
+                    text: "Data Pengaduan Ini Tidak Valid dan Akan Mengabaikan Pengaduan Ini!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -145,6 +132,41 @@
                         var pengaduan_id = $(this).data("id");
                         $.ajax({
                             type: "DELETE",
+                            url: 'pengaduan/' + pengaduan_id,
+                            data: pengaduan_id,
+                            success: function(response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        table.draw();
+                                    });
+                            }
+                        });
+                    } else {
+                        swal("Cancel!", "Perintah dibatalkan!", "error");
+
+                    }
+                });
+        });
+
+
+        // Confirm Data
+        $('body').on('click', '#done-pengaduan', function() {
+
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Data Pengaduan Ini Valid dan Sudah Menindaklanjuti Pengaduan Ini!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+
+                .then((willDelete) => {
+                    if (willDelete) {
+                        var pengaduan_id = $(this).data("id");
+                        $.ajax({
+                            type: "PUT",
                             url: 'pengaduan/' + pengaduan_id,
                             data: pengaduan_id,
                             success: function(response) {

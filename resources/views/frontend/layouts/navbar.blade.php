@@ -68,11 +68,11 @@
                                     <a href="{{ route('homepage') }}">Home</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="#">Tutorial</a>
+                                    <a href="{{ route('tutorial.index') }}">Tutorial</a>
                                 </li>
-                                {{-- <li class="menu-item">
-                                    <a href="#">Jadwal Kegiatan</a>
-                                </li> --}}
+                                <li class="menu-item">
+                                    <a href="{{ route('jadwal.index') }}">Jadwal Kegiatan</a>
+                                </li>
                                 <li class="menu-item"
                                     class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
                                     <a href="{{ route('daftar.index') }}">Pendaftaran</a>
@@ -136,11 +136,11 @@
                         <a href="{{ route('homepage') }}">Home</a>
                     </li>
                     <li class="menu-item">
-                        <a href="#">Tutorial</a>
+                        <a href="{{ route('tutorial.index') }}">Tutorial</a>
                     </li>
-                    {{-- <li class="menu-item">
-                        <a href="#">Jadwal Kegiatan</a>
-                    </li> --}}
+                    <li class="menu-item">
+                        <a href="{{ route('jadwal.index') }}">Jadwal Kegiatan</a>
+                    </li>
                     <li class="menu-item"
                         class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
                         <a href="{{ route('daftar.index') }}">Pendaftaran</a>

@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('data_pengaduans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_pengadu');
-            $table->text('deskripsi_aduan');
-            $table->string('nohp');
-            $table->string('norek');
+            $table->text('deskripsi');
+            $table->string('subjek');
             $table->string('status')->default('belum-selesai');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

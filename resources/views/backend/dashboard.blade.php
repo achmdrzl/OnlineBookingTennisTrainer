@@ -33,8 +33,8 @@
                             <i class="fa fa-file-text"></i>
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            New <strong>Article</strong><br>
-                            <small>Mountain Trip</small>
+                            Jumlah <strong>Paket Latihan</strong><br>
+                            <small>{{ $paket }} Paket Latihan</small>
                         </h3>
                     </div>
                 </a>
@@ -48,8 +48,8 @@
                             <i class="gi gi-usd"></i>
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            + <strong>250%</strong><br>
-                            <small>Sales Today</small>
+                            Total <strong>Transaksi</strong><br>
+                            <small>{{ $transaksi }} Transaksi</small>
                         </h3>
                     </div>
                 </a>
@@ -63,8 +63,8 @@
                             <i class="gi gi-envelope"></i>
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            5 <strong>Messages</strong>
-                            <small>Support Center</small>
+                            Jumlah <strong>Pengaduan </strong>
+                            <small>{{ $aduan }} Pengaduan</small>
                         </h3>
                     </div>
                 </a>
@@ -97,8 +97,8 @@
                             <span id="mini-chart-sales"></span>
                         </div>
                         <h3 class="widget-content animation-pullDown visible-lg">
-                            Latest <strong>Sales</strong>
-                            <small>Per hour</small>
+                            Jumlah <strong>Pelatih</strong>
+                            <small>{{ $pelatih }} orang</small>
                         </h3>
                     </div>
                 </a>
@@ -113,12 +113,12 @@
                         </div>
                         <div class="pull-right">
                             <!-- Jquery Sparkline (initialized in js
-                                                                                            /pages/index.s), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
+                                                                                                /pages/index.s), for more examples you can check out http://omnipotent.net/jquery.sparkline/#s-about -->
                             <span id="mini-chart-brand"></span>
                         </div>
                         <h3 class="widget-content animation-pullDown visible-lg">
-                            Our <strong>Brand</strong>
-                            <small>Popularity over time</small>
+                            Jumlah <strong>Pelanggan</strong>
+                            <small>{{ $user }} orang</small>
                         </h3>
                     </div>
                 </a>

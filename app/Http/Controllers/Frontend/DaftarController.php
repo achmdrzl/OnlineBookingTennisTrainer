@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\PaketLatihan;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class DaftarController extends Controller
@@ -21,6 +22,20 @@ class DaftarController extends Controller
     public function homepage()
     {
         return view('frontend.dashboard');
+    }
+
+    public function getJadwal()
+    {
+        $event = array();
+        $jadwal = Transaksi::with(['pelanggan', 'paket'])->where('status_pemb', 'pembayaran-valid')->get();
+        foreach($jadwal as $item){
+            $event[] = [
+                'title' => $item->pelanggan->name,
+                'start' => $item->start,
+                'end' => $item->end
+            ];
+        }
+        return view('frontend.pages.jadwal', compact('event'));
     }
 
     /**

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('status_pemb')->default('belum-bayar');
             $table->string('status_bo')->default('waiting');
             $table->string('bukti_bayar');
+            $table->string('lap_lat');
+            $table->dateTime('start')->nullable();
+            $table->dateTime('end')->nullable();
             $table->date('tgl_transaksi')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
