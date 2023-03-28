@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\BiodataPelatih;
 use App\Models\PaketLatihan;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
@@ -48,7 +50,7 @@ class DataPaketLatihanController extends Controller
                         $button = '<i class="fa fa-undo"></i>';
                     }
 
-                    $btn = '<button href="booking/'.$paket->id.'" id="edit-paket" data-id="' . $paket->id . '" title="Edit" class="btn btn-default edit-paket"><i class="fa fa-pencil"></i></button>';
+                    $btn = '<button href="booking/' . $paket->id . '" id="edit-paket" data-id="' . $paket->id . '" title="Edit" class="btn btn-default edit-paket"><i class="fa fa-pencil"></i></button>';
 
 
                     $btn = $btn . ' <button id="delete-paket" data-id="' . $paket->id . '" class="btn btn-' . $class . ' btn-md" title="' . $title . '">' . $button . '</button>';
@@ -90,6 +92,11 @@ class DataPaketLatihanController extends Controller
             'kuota' => 'required',
             'harga' => 'required',
             'durasi' => 'required',
+            'nama_pelatih1' => 'required',
+            'nama_asisten1' => 'required',
+            'nama_ballboy1' => 'required',
+            'materi' => 'required',
+            'peralatan' => 'required',
         ]);
 
         //check if validation fails
@@ -113,6 +120,26 @@ class DataPaketLatihanController extends Controller
             'kuota' => $request->kuota,
         ]);
 
+        $detail = BiodataPelatih::updateOrCreate(
+            [
+                'id' => $request->id
+            ],
+            [
+                'nama_pelatih1' => $request->nama_pelatih1,
+                'nama_pelatih2' => $request->nama_pelatih2,
+                'nama_pelatih3' => $request->nama_pelatih3,
+                'nama_asisten1' => $request->nama_asisten1,
+                'nama_asisten2' => $request->nama_asisten2,
+                'nama_asisten3' => $request->nama_asisten3,
+                'nama_ballboy1' => $request->nama_ballboy1,
+                'nama_ballboy2' => $request->nama_ballboy2,
+                'nama_ballboy3' => $request->nama_ballboy3,
+                'materi' => $request->materi,
+                'peralatan' => $request->peralatan,
+                'paket_id' => $user->id
+            ]
+        );
+
         //return response
         return response()->json([
             'success' => true,
@@ -133,7 +160,7 @@ class DataPaketLatihanController extends Controller
      */
     public function edit(string $id)
     {
-        $paketLatihan = PaketLatihan::find($id);
+        $paketLatihan = PaketLatihan::with(['detail'])->where('id', $id)->first();
         return response()->json($paketLatihan);
     }
 

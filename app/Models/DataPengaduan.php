@@ -13,6 +13,6 @@ class DataPengaduan extends Model
 
     public function pengaduan()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

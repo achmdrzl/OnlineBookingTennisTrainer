@@ -84,16 +84,70 @@
                         <span class="help-block">Please enter jumlah pelatih</span>
                     </div>
                     <div class="form-group">
+                        <label for="nama_pelatih1">Nama Pelatih 1</label>
+                        <input type="text" id="nama_pelatih1" name="nama_pelatih1" class="form-control"
+                            placeholder="Enter Pelatih 1..">
+                        <span class="help-block">Please enter nama pelatih 1</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_pelatih2">Nama Pelatih 2</label>
+                        <input type="text" id="nama_pelatih2" name="nama_pelatih2" class="form-control"
+                            placeholder="Enter Pelatih 2..">
+                        <span class="help-block">Please enter nama pelatih 2</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_pelatih3">Nama Pelatih 3</label>
+                        <input type="text" id="nama_pelatih3" name="nama_pelatih3" class="form-control"
+                            placeholder="Enter Pelatih 3..">
+                        <span class="help-block">Please enter nama pelatih 3</span>
+                    </div>
+                    <div class="form-group">
                         <label for="jml_asisten">Jumlah Asisten</label>
                         <input type="number" id="jml_asisten" name="jml_asisten" class="form-control"
                             placeholder="Enter Jumlah Asisten..">
                         <span class="help-block">Please enter your jumlah asisten</span>
                     </div>
                     <div class="form-group">
+                        <label for="nama_asisten1">Nama Asisten 1</label>
+                        <input type="text" id="nama_asisten1" name="nama_asisten1" class="form-control"
+                            placeholder="Enter Nama Asisten 1..">
+                        <span class="help-block">Please enter nama asisten 1</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_asisten2">Nama Asisten 2</label>
+                        <input type="text" id="nama_asisten2" name="nama_asisten2" class="form-control"
+                            placeholder="Enter Nama Asisten 2..">
+                        <span class="help-block">Please enter nama asisten 2</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_asisten3">Nama Asisten 3</label>
+                        <input type="text" id="nama_asisten3" name="nama_asisten3" class="form-control"
+                            placeholder="Enter Nama Asisten 3..">
+                        <span class="help-block">Please enter nama asisten 3</span>
+                    </div>
+                    <div class="form-group">
                         <label for="jml_ballboy">Jumlah Ballboy</label>
                         <input type="number" id="jml_ballboy" name="jml_ballboy" class="form-control"
                             placeholder="Enter Jumlah Ballboy..">
-                        <span class="help-block">Please enter jumlah bllboy</span>
+                        <span class="help-block">Please enter jumlah b1llboy</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_ballboy1">Nama Ballboy 1</label>
+                        <input type="text" id="nama_ballboy1" name="nama_ballboy1" class="form-control"
+                            placeholder="Enter Nama Ballboy 1..">
+                        <span class="help-block">Please enter nama ballboy 1</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_ballboy2">Nama Ballboy 2</label>
+                        <input type="text" id="nama_ballboy2" name="nama_ballboy2" class="form-control"
+                            placeholder="Enter Nama Ballboy 2..">
+                        <span class="help-block">Please enter nama ballboy 2</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="nama_ballboy3">Nama Ballboy 3</label>
+                        <input type="text" id="nama_ballboy3" name="nama_ballboy3" class="form-control"
+                            placeholder="Enter Nama Ballboy 3..">
+                        <span class="help-block">Please enter nama ballboy 3</span>
                     </div>
                     <div class="form-group">
                         <label for="tgl_start">Tanggal Mulai</label>
@@ -137,6 +191,18 @@
                             placeholder="Enter Jumlah Kuota..">
                         <span class="help-block">Please enter jumlah kuota</span>
                     </div>
+                    <div class="form-group">
+                        <label for="kuota">Materi Pembelajaran Paket</label>
+                        <textarea class="form-control" name="materi" id="materi" cols="" rows=""
+                            placeholder="Masukkan Materi"></textarea>
+                        <span class="help-block">Please enter materi pembelajaran paket</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="kuota">Peralatan Latihan</label>
+                        <textarea class="form-control" name="peralatan" id="peralatan" cols="" rows=""
+                            placeholder="Masukkan Peralatan"></textarea>
+                        <span class="help-block">Please enter peralatan latihan</span>
+                    </div>
                     <div class="form-group form-actions">
                         <button type="submit" class="btn btn-sm btn-primary" id="saveBtn" value="create"><i
                                 class="fa fa-user"></i>
@@ -166,7 +232,6 @@
 @endpush
 
 <script>
-
     $(document).ready(function() {
 
         // $('#harga').formatCurrency();
@@ -230,6 +295,30 @@
             $('#paketForm').trigger("reset");
             $('#modelHeading').html("TAMBAH DATA PAKET BARU");
             $('#ajaxModel').modal('show');
+            $('#nama_paket').attr('disabled', false);
+            $('#jml_pelatih').attr('disabled', false);
+            $('#jml_asisten').attr('disabled', false);
+            $('#jml_ballboy').attr('disabled', false);
+            $('#nama_pelatih1').attr('disabled', false);
+            $('#nama_pelatih2').attr('disabled', false);
+            $('#nama_pelatih3').attr('disabled', false);
+            $('#nama_asisten1').attr('disabled', false);
+            $('#nama_asisten2').attr('disabled', false);
+            $('#nama_asisten3').attr('disabled', false);
+            $('#nama_ballboy1').attr('disabled', false);
+            $('#nama_ballboy2').attr('disabled', false);
+            $('#nama_ballboy3').attr('disabled', false);
+            $('#tgl_start').attr('disabled', false);
+            $('#tgl_end').attr('disabled', false);
+            $('#time_start').attr('disabled', false);
+            $('#time_end').attr('disabled', false);
+            $('#durasi').attr('disabled', false);
+            $('#harga').attr('disabled', false);
+            $('#kuota').attr('disabled', false);
+            $('#materi').attr('disabled', false);
+            $('#peralatan').attr('disabled', false);
+            $('#saveBtn').val("show-paket").attr('disabled', false);
+
         });
 
         $('#saveBtn').click(function(e) {
@@ -244,8 +333,17 @@
                     id: $('#paket_id').val(),
                     nama_paket: $('#nama_paket').val(),
                     jml_pelatih: $('#jml_pelatih').val(),
+                    nama_pelatih1: $('#nama_pelatih1').val(),
+                    nama_pelatih2: $('#nama_pelatih2').val(),
+                    nama_pelatih3: $('#nama_pelatih3').val(),
                     jml_asisten: $('#jml_asisten').val(),
+                    nama_asisten1: $('#nama_asisten1').val(),
+                    nama_asisten2: $('#nama_asisten2').val(),
+                    nama_asisten3: $('#nama_asisten3').val(),
                     jml_ballboy: $('#jml_ballboy').val(),
+                    nama_ballboy1: $('#nama_ballboy1').val(),
+                    nama_ballboy2: $('#nama_ballboy2').val(),
+                    nama_ballboy3: $('#nama_ballboy3').val(),
                     tgl_start: $('#tgl_start').val(),
                     tgl_end: $('#tgl_end').val(),
                     time_start: $('#time_start').val(),
@@ -253,6 +351,8 @@
                     harga: $('#harga').val(),
                     durasi: $('#durasi').val(),
                     kuota: $('#kuota').val(),
+                    materi: $('#materi').val(),
+                    peralatan: $('#peralatan').val(),
                 },
                 // data: $('#supplierForm').serialize(),
                 type: "POST",
@@ -304,6 +404,15 @@
                 $('#jml_pelatih').val(data.jml_pelatih).attr('disabled', false);
                 $('#jml_asisten').val(data.jml_asisten).attr('disabled', false);
                 $('#jml_ballboy').val(data.jml_ballboy).attr('disabled', false);
+                $('#nama_pelatih1').val(data.detail[0].nama_pelatih1).attr('disabled', false);
+                $('#nama_pelatih2').val(data.detail[0].nama_pelatih2).attr('disabled', false);
+                $('#nama_pelatih3').val(data.detail[0].nama_pelatih3).attr('disabled', false);
+                $('#nama_asisten1').val(data.detail[0].nama_asisten1).attr('disabled', false);
+                $('#nama_asisten2').val(data.detail[0].nama_asisten2).attr('disabled', false);
+                $('#nama_asisten3').val(data.detail[0].nama_asisten3).attr('disabled', false);
+                $('#nama_ballboy1').val(data.detail[0].nama_ballboy1).attr('disabled', false);
+                $('#nama_ballboy2').val(data.detail[0].nama_ballboy2).attr('disabled', false);
+                $('#nama_ballboy3').val(data.detail[0].nama_ballboy3).attr('disabled', false);
                 $('#tgl_start').val(data.tgl_start).attr('disabled', false);
                 $('#tgl_end').val(data.tgl_end).attr('disabled', false);
                 $('#time_start').val(data.time_start).attr('disabled', false);
@@ -311,6 +420,8 @@
                 $('#durasi').val(data.durasi).attr('disabled', false);
                 $('#harga').val(data.harga).attr('disabled', false);
                 $('#kuota').val(data.kuota).attr('disabled', false);
+                $('#materi').val(data.detail[0].materi).attr('disabled', false);
+                $('#peralatan').val(data.detail[0].peralatan).attr('disabled', false);
             })
         });
 
@@ -319,12 +430,22 @@
             var paket_id = $(this).data('id');
             $.get("{{ route('paket.index') }}" + '/' + paket_id + '/edit', function(
                 data) {
+                console.log(data)
                 $('#modelHeading').html("SHOW DATA PAKET LATIHAN");
                 $('#saveBtn').val("show-paket").attr('disabled', true);
                 $('#ajaxModel').modal('show');
                 $('#paket_id').val(data.id);
                 $('#nama_paket').val(data.nama_paket).attr('disabled', true);
                 $('#jml_pelatih').val(data.jml_pelatih).attr('disabled', true);
+                $('#nama_pelatih1').val(data.detail[0].nama_pelatih1).attr('disabled', true);
+                $('#nama_pelatih2').val(data.detail[0].nama_pelatih2).attr('disabled', true);
+                $('#nama_pelatih3').val(data.detail[0].nama_pelatih3).attr('disabled', true);
+                $('#nama_asisten1').val(data.detail[0].nama_asisten1).attr('disabled', true);
+                $('#nama_asisten2').val(data.detail[0].nama_asisten2).attr('disabled', true);
+                $('#nama_asisten3').val(data.detail[0].nama_asisten3).attr('disabled', true);
+                $('#nama_ballboy1').val(data.detail[0].nama_ballboy1).attr('disabled', true);
+                $('#nama_ballboy2').val(data.detail[0].nama_ballboy2).attr('disabled', true);
+                $('#nama_ballboy3').val(data.detail[0].nama_ballboy3).attr('disabled', true);
                 $('#jml_asisten').val(data.jml_asisten).attr('disabled', true);
                 $('#jml_ballboy').val(data.jml_ballboy).attr('disabled', true);
                 $('#tgl_start').val(data.tgl_start).attr('disabled', true);
@@ -334,6 +455,8 @@
                 $('#durasi').val(data.durasi).attr('disabled', true);
                 $('#harga').val(data.harga).attr('disabled', true);
                 $('#kuota').val(data.kuota).attr('disabled', true);
+                $('#materi').val(data.detail[0].materi).attr('disabled', true);
+                $('#peralatan').val(data.detail[0].peralatan).attr('disabled', true);
             })
         });
 
@@ -341,7 +464,7 @@
         $('body').on('click', '#delete-paket', function() {
 
             swal({
-                    text: "Apakah anda yakin?",
+                    title: "Apakah anda yakin?",
                     text: "Setelah diNon-Aktifkan, Data paket Tidak Akan di Tampilkan!",
                     icon: "warning",
                     buttons: true,
@@ -371,5 +494,38 @@
                 });
         });
 
+        // Periode Latihan Selesai
+        $('body').on('click', '#done-paket', function() {
+
+            swal({
+                    title: "Apakah anda yakin?",
+                    text: "Periode Dari Paket Latihan Ini Telah Selesai!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+
+                .then((willDelete) => {
+                    if (willDelete) {
+                        var paket_id = $(this).data("id");
+                        $.ajax({
+                            type: "POST",
+                            url: 'paketDone/' + paket_id,
+                            data: paket_id,
+                            success: function(response) {
+                                swal(response.status, {
+                                        icon: "success",
+                                    })
+                                    .then((result) => {
+                                        table.draw();
+                                    });
+                            }
+                        });
+                    } else {
+                        swal("Cancel!", "Perintah dibatalkan!", "error");
+
+                    }
+                });
+        });
     });
 </script>

@@ -90,11 +90,11 @@
                     <span class="sidebar-header-title">Data Transaksi</span>
                 </li>
                 <li>
-                    <a href="{{ route('transaksi.index') }}"><i class="gi gi-share_alt sidebar-nav-icon"></i><span
+                    <a href="{{ route('transaksi.index') }}" class="{{ request()->segment(1) == 'transaksi' ? 'active' : '' }}"><i class="gi gi-share_alt sidebar-nav-icon"></i><span
                             class="sidebar-nav-mini-hide">Transaksi</span></a>
                 </li>
                 <li>
-                    <a href="page_widgets_social.html"><i class="gi gi-repeat sidebar-nav-icon"></i><span
+                    <a href="{{ route('history.index') }}" class="{{ request()->segment(1) == 'history' ? 'active' : '' }}"><i class="gi gi-repeat sidebar-nav-icon"></i><span
                             class="sidebar-nav-mini-hide">History Transaksi</span></a>
                 </li>
             </ul>

@@ -303,7 +303,7 @@
         $('body').on('click', '#delete-pelatih', function() {
 
             swal({
-                    text: "Apakah anda yakin?",
+                    title: "Apakah anda yakin?",
                     text: "Setelah diNon-Aktifkan, Data Pelatih Tidak Akan di Tampilkan!",
                     icon: "warning",
                     buttons: true,

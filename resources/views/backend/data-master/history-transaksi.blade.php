@@ -7,21 +7,22 @@
         <div class="content-header">
             <div class="header-section">
                 <h1>
-                    <i class="fa fa-table"></i>Master Data<br><small>Data Transaksi Pelanggan</small>
+                    <i class="fa fa-table"></i>Master Data<br><small>Data History Transaksi Pelanggan</small>
                 </h1>
             </div>
         </div>
         <ul class="breadcrumb breadcrumb-top">
             <li>Master Data</li>
-            <li><a href="">Data Transaksi Pelanggan</a></li>
+            <li><a href="">Data History Transaksi Pelanggan</a></li>
         </ul>
         <!-- END Datatables Header -->
 
         <!-- Datatables Content -->
         <div class="block full">
             <div class="block-title">
-                <h2><strong>Data</strong> Transaksi Pelanggan</h2>
+                <h2><strong>Data</strong> History Transaksi Pelanggan</h2>
             </div>
+
             <div class="table-responsive">
                 <table id="example-datatable" class="table datatable table-center table-condensed table-bordered"
                     width="100%">
@@ -35,7 +36,6 @@
                             <th>Bukti Bayar</th>
                             <th>Tgl Transaksi</th>
                             <th>Status</th>
-                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -127,7 +127,7 @@
         var table = $('.datatable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('transaksi.index') }}",
+            ajax: "{{ route('history.index') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex'
@@ -159,12 +159,6 @@
                 {
                     data: 'status_pemb',
                     name: 'status_pemb'
-                },
-                {
-                    data: 'action',
-                    name: 'action',
-                    orderable: false,
-                    searchable: false
                 },
             ]
         });

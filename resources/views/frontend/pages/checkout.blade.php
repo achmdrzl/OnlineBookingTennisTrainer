@@ -101,79 +101,149 @@
                                     <h3 id="order_review_heading">Pesanan Anda</h3>
                                     <!-- Review Order -->
                                     <div id="order_review" class="woocommerce-checkout-review-order">
-                                        @foreach ($paket as $item)
-                                            <input type="hidden" name="user_id" id="user_id"
-                                                value="{{ Auth::user()->id }}">
-                                            <input type="hidden" name="paket_id" id="paket_id"
-                                                value="{{ $item->id }}">
-                                            <table class="shop_table woocommerce-checkout-review-order-table">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="product-name">Product</th>
-                                                        <th class="product-total">Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                        {{-- @foreach ($paket as $item) --}}
+                                        <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
+                                        <input type="hidden" name="paket_id" id="paket_id" value="{{ $paket->id }}">
+                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">Product</th>
+                                                    <th class="product-total">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        {{ $paket->nama_paket }}
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <span class="amount">Rp.
+                                                            {{ number_format($paket->harga) }}</span>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name">
+                                                        Fasilitas
+                                                    </td>
+                                                    <td class="product-total">
+                                                        Jumlah Pelatih <strong class="product-quantity">&times;
+                                                            {{ $paket->jml_pelatih }}</strong>,
+                                                        Jumlah Asisten <strong class="product-quantity">&times;
+                                                            {{ $paket->jml_asisten }}</strong>,
+                                                        Jumlah Ballboy <strong class="product-quantity">&times;
+                                                            {{ $paket->jml_ballboy }}</strong>,
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name">
+                                                        Tanggal Latihan
+                                                    </td>
+                                                    <td class="product-total">
+                                                        Mulai Dari <strong
+                                                            class="product-quantity">{{ date('d F Y', strtotime($paket->tgl_start)) }}</strong>
+                                                        Sampai Dengan <strong
+                                                            class="product-quantity">{{ date('d F Y', strtotime($paket->tgl_end)) }}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name">
+                                                        Waktu Latihan
+                                                    </td>
+                                                    <td class="product-total">
+                                                        Mulai Dari <strong
+                                                            class="product-quantity">{{ date('h:i:sa', strtotime($paket->time_start)) }}</strong>
+                                                        Sampai Dengan <strong
+                                                            class="product-quantity">{{ date('h:i:sa', strtotime($paket->time_end)) }}</strong>
+                                                    </td>
+                                                </tr>
+                                                @foreach ($paket->detail as $item)
                                                     <tr class="cart_item">
-                                                        <td class="product-name text-center">
-                                                            {{ $item->nama_paket }}
+                                                        <td class="product-name">
+                                                            Nama Pelatih
                                                         </td>
                                                         <td class="product-total">
-                                                            <span class="amount">Rp.
-                                                                {{ number_format($item->harga) }}</span>
+                                                            <strong class="product-quantity">{{ $item->nama_pelatih1 }} {{ $item->nama_pelatih2 == null ? '' : '&' }} {{ $item->nama_pelatih2 }} {{ $item->nama_pelatih3 == null ? '' : '&' }} {{ $item->nama_pelatih3 }} </strong>
                                                         </td>
                                                     </tr>
                                                     <tr class="cart_item">
                                                         <td class="product-name">
-                                                            Fasilitas
+                                                            Nama Asisten
                                                         </td>
                                                         <td class="product-total">
-                                                            Jumlah Pelatih <strong class="product-quantity">&times;
-                                                                {{ $item->jml_pelatih }}</strong>,
-                                                            Jumlah Asisten <strong class="product-quantity">&times;
-                                                                {{ $item->jml_asisten }}</strong>,
-                                                            Jumlah Ballboy <strong class="product-quantity">&times;
-                                                                {{ $item->jml_ballboy }}</strong>,
+                                                            <strong class="product-quantity">{{ $item->nama_asisten1 }} {{ $item->nama_asisten2 == null ? '' : '&' }} {{ $item->nama_asisten2 }} {{ $item->nama_asisten3 == null ? '' : '&' }} {{ $item->nama_asisten3 }} </strong>
                                                         </td>
                                                     </tr>
                                                     <tr class="cart_item">
                                                         <td class="product-name">
-                                                            Tanggal Latihan
+                                                            Nama Ballboy
                                                         </td>
                                                         <td class="product-total">
-                                                            Mulai Dari <strong
-                                                                class="product-quantity">{{ date('d F Y', strtotime($item->tgl_start)) }}</strong>
-                                                            Sampai Dengan <strong
-                                                                class="product-quantity">{{ date('d F Y', strtotime($item->tgl_end)) }}</strong>
+                                                            <strong class="product-quantity">{{ $item->nama_ballboy1 }} {{ $item->nama_ballboy2 == null ? '' : '&' }} {{ $item->nama_ballboy2 }} {{ $item->nama_ballboy3 == null ? '' : '&' }} {{ $item->nama_ballboy3 }} </strong>
                                                         </td>
                                                     </tr>
                                                     <tr class="cart_item">
                                                         <td class="product-name">
-                                                            Waktu Latihan
+                                                            Materi Pembelajaran
                                                         </td>
                                                         <td class="product-total">
-                                                            Mulai Dari <strong
-                                                                class="product-quantity">{{ date('h:i:sa', strtotime($item->time_start)) }}</strong>
-                                                            Sampai Dengan <strong
-                                                                class="product-quantity">{{ date('h:i:sa', strtotime($item->time_end)) }}</strong>
+                                                            Topik : <strong class="product-quantity">{{ $item->materi }} </strong>
                                                         </td>
                                                     </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr class="order-total">
-                                                        <th>Total</th>
-                                                        <td><strong><span class="amount">Rp.
-                                                                    {{ number_format($item->harga) }}</span></strong>
+                                                    <tr class="cart_item">
+                                                        <td class="product-name">
+                                                            Peralatan Latihan
+                                                        </td>
+                                                        <td class="product-total">
+                                                            Peralatan : <strong class="product-quantity">{{ $item->peralatan }} </strong>
                                                         </td>
                                                     </tr>
-                                                </tfoot>
-                                            </table>
-                                        @endforeach
+                                                @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                                <tr class="order-total">
+                                                    <th>Total</th>
+                                                    <td><strong><span class="amount">Rp.
+                                                                {{ number_format($paket->harga) }}</span></strong>
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        {{-- @endforeach --}}
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert"
                                             style="display: none;" style="color: red">
                                         </div>
                                         <div id="payment" class="woocommerce-checkout-payment">
                                             <ul class="wc_payment_methods payment_methods methods">
+                                                <li>
+                                                    <p class="form-row form-row form-row-wide address-field validate-required"
+                                                        id="billing_city_field">
+                                                        <label for="lap_lat" class="">Masukkan Lapangan Tempat Anda
+                                                            Latihan</label>
+                                                        <input type="text" class="input-text " name="lap_lat"
+                                                            id="lap_lat" placeholder="Nama Lapangan / Alamat Lapangan"
+                                                            value="" />
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p class="form-row form-row form-row-wide address-field validate-required"
+                                                        id="billing_city_field">
+                                                        <label for="start" class="">Masukkan Tanggal / Waktu
+                                                            Mulai Anda Latihan</label>
+                                                        <input type="datetime-local" class="input-text " name="start"
+                                                            id="start" placeholder="Nama Lapangan / Alamat Lapangan"
+                                                            value="" />
+                                                    </p>
+                                                </li>
+                                                <li>
+                                                    <p class="form-row form-row form-row-wide address-field validate-required"
+                                                        id="billing_city_field">
+                                                        <label for="end" class="">Masukkan Tanggal / Waktu
+                                                            Berakhir Anda Latihan</label>
+                                                        <input type="datetime-local" class="input-text " name="end"
+                                                            id="end" placeholder="Nama Lapangan / Alamat Lapangan"
+                                                            value="" />
+                                                    </p>
+                                                </li>
                                                 <li class="wc_payment_method payment_method_paypal">
                                                     <input id="metode_pemb" type="radio" class="input-radio"
                                                         name="metode_pemb" value="bank_bri"
@@ -261,6 +331,9 @@
             formData.append('bukti_bayar', img.files[0]);
             formData.append('user_id', $("#user_id").val());
             formData.append('paket_id', $("#paket_id").val());
+            formData.append('lap_lat', $("#lap_lat").val());
+            formData.append('start', $("#start").val());
+            formData.append('end', $("#end").val());
             formData.append('metode_pemb', $("#metode_pemb:checked").val());
 
             $.ajax({
@@ -291,7 +364,7 @@
                             timer: 3000
                         });
                         $('#submitBtn').html('SIMPAN');
-                        window.location = '{{ url('/orderSukses')}}'
+                        window.location = '{{ url('/orderSukses') }}'
                     }
                 }
             });

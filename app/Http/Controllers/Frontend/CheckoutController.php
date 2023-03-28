@@ -13,7 +13,7 @@ class CheckoutController extends Controller
 {
     public function checkout(string $id)
     {
-        $paket = PaketLatihan::where('id', $id)->where('status', 'aktif')->get();
+        $paket = PaketLatihan::with(['detail'])->where('id', $id)->where('status', 'aktif')->first();
 
         $user = User::with(['biodata'])->where('id', auth()->user()->id)->first();
 
@@ -26,6 +26,9 @@ class CheckoutController extends Controller
         $validator = Validator::make($request->all(), [
             'metode_pemb' => 'required|in:bank_bca,bank_bri,bank_bni',
             'bukti_bayar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'lap_lat' => 'required',
+            'start' => 'required',
+            'end' => 'required',
         ]);
 
         //check if validation fails
@@ -49,6 +52,9 @@ class CheckoutController extends Controller
                 'user_id' => $request->input('user_id'),
                 'paket_id' => $request->input('paket_id'),
                 'bukti_bayar' => $fileName,
+                'lap_lat' => $request->input('lap_lat'),
+                'start' => $request->input('start'),
+                'end' => $request->input('end'),
             ]);
         }
 

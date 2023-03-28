@@ -237,7 +237,7 @@
         $('body').on('click', '#delete-user', function() {
 
             swal({
-                    text: "Apakah anda yakin?",
+                    title: "Apakah anda yakin?",
                     text: "Setelah diNon-Aktifkan, User Tidak Bisa Melakukan Transaksi Lagi!",
                     icon: "warning",
                     buttons: true,

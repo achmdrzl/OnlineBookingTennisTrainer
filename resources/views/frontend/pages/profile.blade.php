@@ -43,6 +43,13 @@
                                                     <input type="email" class="input-text " name="email" id="email"
                                                         placeholder="Masukkan Email Anda" value="{{ $user->email }}" />
                                                 </p>
+                                                <p class="form-row form-row form-row-wide address-field validate-required"
+                                                    id="billing_address_1_field">
+                                                    <label for="nohp" class="">No Handphone</label>
+                                                    <input type="number" class="input-text" name="nohp" id="nohp"
+                                                        placeholder="Masukkan No Handphone Anda"
+                                                        value="{{ $user->nohp }}" />
+                                                </p>
                                                 @foreach ($user->biodata as $item)
                                                     <div class="clear"></div>
                                                     <p class="form-row form-row form-row-first validate-required validate-email"
@@ -103,6 +110,37 @@
                                     </div>
                                     <!-- /Review Order -->
                                 </form>
+                                <h4 id="order_review_heading">Riwayat Pemesanan</h4>
+
+                                <table class="shop_table woocommerce-checkout-review-order-table">
+                                    <thead>
+                                        <th>No</th>
+                                        <th>Tgl Transaksi</th>
+                                        <th>Paket Order</th>
+                                        <th>Lapangan Latihan</th>
+                                        <th>Waktu Latihan</th>
+                                        <th>Status</th>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($dataOrder as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->tgl_transaksi }}</td>
+                                                <td>{{ ucfirst($item->paket->nama_paket) }}</td>
+                                                <td>{{ $item->lap_lat }}</td>
+                                                <td>Mulai {{ $item->start }} Sampai dengan {{ $item->end }}</td>
+                                                <td>
+                                                    @if ($item->status_pemb == 'pembayaran-valid')
+                                                        <div class="btn btn-success">Selesai</div>
+                                                    @else
+                                                        <div class="btn btn-warning"> Belum Selesai</div>
+                                                       
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </section>
@@ -136,6 +174,7 @@
             var formData = new FormData();
             formData.append('name', $("#name").val());
             formData.append('email', $("#email").val());
+            formData.append('nohp', $("#nohp").val());
             formData.append('alamat', $("#alamat").val());
             formData.append('umur', $("#umur").val());
             formData.append('jk', $("#jk").val());
