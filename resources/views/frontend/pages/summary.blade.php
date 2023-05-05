@@ -1,5 +1,7 @@
 @extends('frontend.layouts.main')
 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
 @section('content')
     <!-- Top Panel -->
@@ -29,7 +31,7 @@
                                 <form name="checkout" id="checkout" method="post" class="checkout woocommerce-checkout"
                                     enctype="multipart/form-data">
                                     <h3 id="order_review_heading">Biodata Pelanggan</h3>
-
+                                    <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
                                     <table class="shop_table woocommerce-checkout-review-order-table">
                                         <thead>
                                             <tr>
@@ -98,166 +100,231 @@
                                         </tbody>
                                     </table>
 
-                                    <h3 id="order_review_heading">Pesanan Anda</h3>
+                                    <h3 id="order_review_heading">Layanan yang anda pilih</h3>
                                     <!-- Review Order -->
+                                    @php($data = session()->get('data'))
+                                    @php($lapangan = session()->get('lapangan'))
                                     <div id="order_review" class="woocommerce-checkout-review-order">
                                         {{-- @foreach ($paket as $item) --}}
                                         <input type="hidden" name="user_id" id="user_id" value="{{ Auth::user()->id }}">
-                                        <input type="hidden" name="paket_id" id="paket_id" value="{{ $paket->id }}">
                                         <table class="shop_table woocommerce-checkout-review-order-table">
                                             <thead>
                                                 <tr>
-                                                    <th class="product-name">Product</th>
+                                                    <th class="product-name">Service</th>
                                                     <th class="product-total">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr class="cart_item">
                                                     <td class="product-name text-center">
-                                                        {{ $paket->nama_paket }}
+                                                        Nama Lapangan
                                                     </td>
                                                     <td class="product-total">
-                                                        <span class="amount">Rp.
-                                                            {{ number_format($paket->harga) }}</span>
+                                                        <span
+                                                            class="amount">{{ ucfirst($lapangan['nama_lapangan']) }}</span>
                                                     </td>
                                                 </tr>
                                                 <tr class="cart_item">
-                                                    <td class="product-name">
+                                                    <td class="product-name text-center">
+                                                        Alamat Lapangan
+                                                    </td>
+                                                    <td class="product-total">
+                                                        {{ ucfirst($lapangan['alamat_lap']) }}
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        Jenis Lapangan
+                                                    </td>
+                                                    <td class="product-total">
+                                                        {{ ucfirst($lapangan['jenis_lap']) }}
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        Harga Lapangan
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp.
+                                                            {{ number_format($lapangan['harga'] * $data['durasiLat']) }}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
                                                         Fasilitas
                                                     </td>
                                                     <td class="product-total">
-                                                        Jumlah Pelatih <strong class="product-quantity">&times;
-                                                            {{ $paket->jml_pelatih }}</strong>,
-                                                        Jumlah Asisten <strong class="product-quantity">&times;
-                                                            {{ $paket->jml_asisten }}</strong>,
-                                                        Jumlah Ballboy <strong class="product-quantity">&times;
-                                                            {{ $paket->jml_ballboy }}</strong>,
+                                                        Jumlah Ballboy <strong>x {{ $data['jml_ballboy'] }}</strong>,
+                                                        @if ($data['jml_asisten'] == null)
+                                                        @else
+                                                            Jumlah Asisten <strong>x {{ $data['jml_asisten'] }}</strong>,
+                                                        @endif
+                                                        Jumlah Pelatih <strong>x {{ $data['jml_pelatih'] }}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr class="cart_item">
-                                                    <td class="product-name">
-                                                        Tanggal Latihan
+                                                    <td class="product-name text-center">
+                                                        Jadwal Latihan
                                                     </td>
                                                     <td class="product-total">
-                                                        Mulai Dari <strong
-                                                            class="product-quantity">{{ date('d F Y', strtotime($paket->tgl_start)) }}</strong>
-                                                        Sampai Dengan <strong
-                                                            class="product-quantity">{{ date('d F Y', strtotime($paket->tgl_end)) }}</strong>
+                                                        @php(date('Y-m-d', strtotime($data['start_date'])))
+                                                        Tanggal
+                                                        <strong>{{ date('Y-m-d', strtotime($data['start_date'])) }}</strong>
+                                                        , Jam
+                                                        <strong>{{ date('H:i', strtotime($data['start_date'])) }}</strong>
+                                                        sampai dengan
+                                                        <strong>{{ date('H:i', strtotime($data['end_date'])) }}</strong>
                                                     </td>
                                                 </tr>
                                                 <tr class="cart_item">
-                                                    <td class="product-name">
-                                                        Waktu Latihan
+                                                    <td class="product-name text-center">
+                                                        Durasi Latihan
                                                     </td>
                                                     <td class="product-total">
-                                                        Mulai Dari <strong
-                                                            class="product-quantity">{{ date('h:i:sa', strtotime($paket->time_start)) }}</strong>
-                                                        Sampai Dengan <strong
-                                                            class="product-quantity">{{ date('h:i:sa', strtotime($paket->time_end)) }}</strong>
+                                                        <strong>{{ $data['durasiLat'] }}</strong> jam
                                                     </td>
                                                 </tr>
-                                                @foreach ($paket->detail as $item)
+                                            </tbody>
+                                        </table>
+                                        <div class="text-center">
+                                            <img class="text-center"
+                                                src="{{ asset('storage/uploads/img/' . $lapangan['gambar_lap']) }}"
+                                                width="250px" alt="">
+                                            <p>{{ $lapangan['nama_lapangan'] }}</p>
+                                        </div>
+                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">Service</th>
+                                                    <th class="product-name">Jumlah</th>
+                                                    <th class="product-total">Harga</th>
+                                                    <th class="product-total">Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        Ballboy
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>{{ $data['jml_ballboy'] }}</strong> orang
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp. 50.000,-</strong> / orang
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp.
+                                                            {{ number_format($data['jml_ballboy'] * 50000) }}</strong>
+                                                    </td>
+                                                </tr>
+                                                @if ($data['jml_asisten'] == null)
+                                                @else
                                                     <tr class="cart_item">
-                                                        <td class="product-name">
-                                                            Nama Pelatih
+                                                        <td class="product-name text-center">
+                                                            Asisten
                                                         </td>
                                                         <td class="product-total">
-                                                            <strong class="product-quantity">{{ $item->nama_pelatih1 }}
-                                                                {{ $item->nama_pelatih2 == null ? '' : '&' }}
-                                                                {{ $item->nama_pelatih2 }}
-                                                                {{ $item->nama_pelatih3 == null ? '' : '&' }}
-                                                                {{ $item->nama_pelatih3 }} </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="cart_item">
-                                                        <td class="product-name">
-                                                            Nama Asisten
+                                                            <strong>{{ $data['jml_asisten'] }}</strong> orang
                                                         </td>
                                                         <td class="product-total">
-                                                            <strong class="product-quantity">{{ $item->nama_asisten1 }}
-                                                                {{ $item->nama_asisten2 == null ? '' : '&' }}
-                                                                {{ $item->nama_asisten2 }}
-                                                                {{ $item->nama_asisten3 == null ? '' : '&' }}
-                                                                {{ $item->nama_asisten3 }} </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="cart_item">
-                                                        <td class="product-name">
-                                                            Nama Ballboy
+                                                            <strong>Rp. 100.000,-</strong> / orang
                                                         </td>
                                                         <td class="product-total">
-                                                            <strong class="product-quantity">{{ $item->nama_ballboy1 }}
-                                                                {{ $item->nama_ballboy2 == null ? '' : '&' }}
-                                                                {{ $item->nama_ballboy2 }}
-                                                                {{ $item->nama_ballboy3 == null ? '' : '&' }}
-                                                                {{ $item->nama_ballboy3 }} </strong>
+                                                            <strong>Rp.
+                                                                {{ number_format($data['jml_asisten'] * 100000) }}</strong>
                                                         </td>
                                                     </tr>
-                                                    <tr class="cart_item">
-                                                        <td class="product-name">
-                                                            Materi Pembelajaran
-                                                        </td>
-                                                        <td class="product-total">
-                                                            Topik : <strong class="product-quantity">{{ $item->materi }}
-                                                            </strong>
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="cart_item">
-                                                        <td class="product-name">
-                                                            Peralatan Latihan
-                                                        </td>
-                                                        <td class="product-total">
-                                                            Peralatan : <strong
-                                                                class="product-quantity">{{ $item->peralatan }} </strong>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                @endif
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        Pelatih
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>{{ $data['jml_pelatih'] }}</strong> orang
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp. 250.000,-</strong> / orang
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp.
+                                                            {{ number_format($data['jml_pelatih'] * 250000) }}</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        Lapangan
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>{{ $data['durasiLat'] }}</strong> jam
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp. {{ number_format($lapangan['harga']) }}</strong> / jam
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <strong>Rp.
+                                                            {{ number_format($lapangan['harga'] * $data['durasiLat']) }}</strong>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                             <tfoot>
                                                 <tr class="order-total">
-                                                    <th>Total</th>
+                                                    <th colspan="3">Total</th>
                                                     <td><strong><span class="amount">Rp.
-                                                        {{ number_format($paket->harga) }}</span></strong>
+                                                                {{ number_format($data['jml_ballboy'] * 50000 + $data['jml_asisten'] * 100000 + $data['jml_pelatih'] * 250000 + $lapangan['harga'] * $data['durasiLat']) }}</span></strong>
                                                     </td>
                                                 </tr>
                                             </tfoot>
                                         </table>
+                                        <div id="payment" class="woocommerce-checkout-payment mb-5">
+                                            <ul class="wc_payment_methods payment_methods methods">
+                                                <li class="wc_payment_method payment_method_paypal">
+                                                    <div class="payment_box payment_method_paypal">
+                                                        Hal yang wajib diikuti :
+                                                        <ul>
+                                                            <li>Wajib membawa raket tenis pribadi</li>
+                                                            <li>Wajib mengganti bola apabila dihilangkan</li>
+                                                            <li>Wajib membawa sepatu pribadi yang memiliki spesifikasi tenis
+                                                            </li>
+                                                        </ul>
+
+                                                        Hal yang di sarankan :
+                                                        <ul>
+                                                            <li>Disarankan membawa air mineral</li>
+                                                            <li>Disarankan membawa baju ganti</li>
+                                                        </ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <table class="shop_table woocommerce-checkout-review-order-table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="product-name">Materi Latihan</th>
+                                                    <th class="product-total">Keterangan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="cart_item">
+                                                    <td class="product-name text-center">
+                                                        Praktek Latihan Basic Service dan Cara Melakukan Smash
+                                                    </td>
+                                                    <td class="product-total">
+                                                        <ul>
+                                                            <li>Pemanasan diawal selama 15 menit</li>
+                                                            <li>Gerakan Memegang Raket dengan benar</li>
+                                                            <li>Gerakan Memukul Bola dengan benar</li>
+                                                        </ul>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                         {{-- @endforeach --}}
-                                        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+                                        <div class="alert-danger alert-dismissible fade show" role="alert"
                                             style="display: none;" style="color: red">
                                         </div>
                                         <div id="payment" class="woocommerce-checkout-payment">
                                             <ul class="wc_payment_methods payment_methods methods">
-                                                <li>
-                                                    <p class="form-row form-row form-row-wide address-field validate-required"
-                                                        id="billing_city_field">
-                                                        <label for="lap_lat" class="">Masukkan Lapangan Tempat Anda
-                                                            Latihan</label>
-                                                        <input type="text" class="input-text " name="lap_lat"
-                                                            id="lap_lat" placeholder="Nama Lapangan / Alamat Lapangan"
-                                                            value="" />
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="form-row form-row form-row-wide address-field validate-required"
-                                                        id="billing_city_field">
-                                                        <label for="start" class="">Masukkan Tanggal / Waktu
-                                                            Mulai Anda Latihan</label>
-                                                        <input type="datetime-local" class="input-text " name="start"
-                                                            id="start" placeholder="Nama Lapangan / Alamat Lapangan"
-                                                            value="" />
-                                                    </p>
-                                                </li>
-                                                <li>
-                                                    <p class="form-row form-row form-row-wide address-field validate-required"
-                                                        id="billing_city_field">
-                                                        <label for="end" class="">Masukkan Tanggal / Waktu
-                                                            Berakhir Anda Latihan</label>
-                                                        <input type="datetime-local" class="input-text " name="end"
-                                                            id="end" placeholder="Nama Lapangan / Alamat Lapangan"
-                                                            value="" />
-                                                    </p>
-                                                </li>
                                                 <li class="wc_payment_method payment_method_paypal">
                                                     <input id="metode_pemb" type="radio" class="input-radio"
                                                         name="metode_pemb" value="bank_bri"
@@ -295,11 +362,10 @@
                                                     </p>
                                                 </li>
                                             </ul>
-
                                             <div class="form-row place-order">
-                                                <button class="btn btn-primary" id="submitBtn" value="create"
+                                                <button class="top_panel_link" id="submitBtn" value="create"
                                                     name="submitBtn" type="submit">
-                                                    Submit
+                                                    REGISTER
                                                 </button>
                                             </div>
                                         </div>
@@ -340,10 +406,6 @@
             var formData = new FormData();
             formData.append('bukti_bayar', img.files[0]);
             formData.append('user_id', $("#user_id").val());
-            formData.append('paket_id', $("#paket_id").val());
-            formData.append('lap_lat', $("#lap_lat").val());
-            formData.append('start', $("#start").val());
-            formData.append('end', $("#end").val());
             formData.append('metode_pemb', $("#metode_pemb:checked").val());
 
             $.ajax({

@@ -35,7 +35,7 @@
                             <div class="sc_content content_wrap">
                                 <h3
                                     class="sc_title sc_title_underline sc_align_center text_align_center font_weight_600 font_size_3_571em">
-                                    Choose your Package</h3>
+                                    Choose your Schedule</h3>
                                 <div class="text_uppercase margin_bottom_70_imp">
                                     <p class="price_blocks_subtitle text_align_center add_color_2 margin_auto">
                                         Tennis Club is honored to work with the country’s league best tennis
@@ -46,6 +46,11 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <div id='calendar'></div>
+                                        </div>
+                                        <div class="text-center mb-4 mt-4">
+                                            <a href="{{ route('daftar.index') }}">
+                                                <button class="top_panel_link">Daftar Latihan</button>
+                                            </a>
                                         </div>
                                     </div>
                                     <!-- /Price Block -->

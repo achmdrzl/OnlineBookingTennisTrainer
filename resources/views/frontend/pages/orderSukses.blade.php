@@ -21,6 +21,7 @@
                                 </div>
                                 <div class="row">
                                     <!-- /Price Block -->
+                                    @php($data = session()->get('data'))
                                 </div>
                             </div>
                         </div>

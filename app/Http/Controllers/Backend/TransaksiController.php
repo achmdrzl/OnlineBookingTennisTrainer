@@ -48,6 +48,9 @@ class TransaksiController extends Controller
                                 </a>';
                     }
                 })
+                ->addColumn('total', function ($transaksi) {
+                    return 'Rp.'. number_format(($transaksi->lapangan->harga*$transaksi->durasiLat)+($transaksi->jml_ballboy*50000)+($transaksi->jml_asisten*100000)+($transaksi->jml_pelatih*250000));
+                })
                 ->addColumn('tgl_transaksi', function ($transaksi) {
                     return date('d F Y', strtotime($transaksi->tgl_transaksi));
                 })
@@ -106,6 +109,9 @@ class TransaksiController extends Controller
                                 <img src="' . $url . '" width="80px" class="img-rounded" align="center" download />
                                 </a>';
                     }
+                })
+                ->addColumn('total', function ($transaksi) {
+                    return 'Rp.' . number_format(($transaksi->lapangan->harga * $transaksi->durasiLat) + ($transaksi->jml_ballboy * 50000) + ($transaksi->jml_asisten * 100000) + ($transaksi->jml_pelatih * 250000));
                 })
                 ->addColumn('tgl_transaksi', function ($transaksi) {
                     return date('d F Y', strtotime($transaksi->tgl_transaksi));

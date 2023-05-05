@@ -33,8 +33,8 @@
                             <i class="fa fa-file-text"></i>
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            Jumlah <strong>Paket Latihan</strong><br>
-                            <small>{{ $paket }} Paket Latihan</small>
+                            Jumlah <strong>Lapangan Indoor</strong><br>
+                            <small>{{ $lapIn }} Lapangan</small>
                         </h3>
                     </div>
                 </a>
@@ -78,8 +78,8 @@
                             <i class="gi gi-picture"></i>
                         </div>
                         <h3 class="widget-content text-right animation-pullDown">
-                            +30 <strong>Photos</strong>
-                            <small>Gallery</small>
+                            Jumlah <strong>Lapangan Outdoor</strong>
+                            <small>{{ $lapOut }} Lapangan</small>
                         </h3>
                     </div>
                 </a>

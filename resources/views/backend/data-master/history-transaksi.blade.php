@@ -34,6 +34,7 @@
                             <th>No Hp</th>
                             <th>Metode Bayar</th>
                             <th>Bukti Bayar</th>
+                            <th>Total</th>
                             <th>Tgl Transaksi</th>
                             <th>Status</th>
                         </tr>
@@ -151,6 +152,10 @@
                 {
                     data: 'bukti_bayar',
                     name: 'bukti_bayar'
+                },
+                {
+                    data: 'total',
+                    name: 'total'
                 },
                 {
                     data: 'tgl_transaksi',
