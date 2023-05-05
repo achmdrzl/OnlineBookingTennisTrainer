@@ -23,7 +23,7 @@
                             </li>
                         @endif
                         <li class="top_panel_link">
-                            <a href="{{ route('daftar.index') }}">Daftar Latihan</a>
+                            <a href="{{ route('jadwal.index') }}">Daftar Latihan</a>
                         </li>
                     </ul>
                 </div>
@@ -201,7 +201,7 @@
             </div>
         </div>
         <div class="top_panel_link">
-            <a href="{{ route('daftar.index') }}">Daftar Latihan</a>
+            <a href="{{ route('jadwal.index') }}">Daftar Latihan</a>
         </div>
     </div>
     <div class="mask"></div>
