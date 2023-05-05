@@ -20,4 +20,9 @@ class Transaksi extends Model
     {
         return $this->belongsTo(PaketLatihan::class);
     }
+
+    public function lapangan()
+    {
+        return $this->belongsTo(DataLapangan::class, 'lap_id');
+    }
 }

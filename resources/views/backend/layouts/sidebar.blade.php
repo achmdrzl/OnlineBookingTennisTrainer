@@ -75,14 +75,17 @@
                         <li>
                             <a href="pelanggan" class="{{ request()->segment(1) == 'pelanggan' ? 'active' : '' }}">Data Pelanggan</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="paket" class="{{ request()->segment(1) == 'paket' ? 'active' : '' }}">Data Paket Latihan</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="pengaduan" class="{{ request()->segment(1) == 'pengaduan' ? 'active' : '' }}">Data Pengaduan</a>
                         </li>
                         <li>
                             <a href="dataPelatih" class="{{ request()->segment(1) == 'dataPelatih' ? 'active' : '' }}">Data Pelatih</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('dataLap.index') }}" class="{{ request()->segment(1) == 'dataLap' ? 'active' : '' }}">Data Lapangan</a>
                         </li>
                     </ul>
                 </li>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\DataLapangan;
 use App\Models\PaketLatihan;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -14,9 +15,8 @@ class DaftarController extends Controller
      */
     public function index()
     {
-        $paket = PaketLatihan::where('status', 'aktif')->get();
-        $totalCoulumn = PaketLatihan::count();
-        return view('frontend.pages.pendaftaran', compact('paket', 'totalCoulumn'));
+        $lap = DataLapangan::where('status', 'aktif')->get();
+        return view('frontend.pages.daftar', compact('lap'));
     }
 
     public function homepage()
@@ -27,12 +27,12 @@ class DaftarController extends Controller
     public function getJadwal()
     {
         $event = array();
-        $jadwal = Transaksi::with(['pelanggan', 'paket'])->where('status_pemb', 'pembayaran-valid')->get();
+        $jadwal = Transaksi::with(['pelanggan', 'lapangan'])->where('status_pemb', 'pembayaran-valid')->get();
         foreach($jadwal as $item){
             $event[] = [
                 'title' => $item->pelanggan->name,
-                'start' => $item->start,
-                'end' => $item->end
+                'start' => $item->start_date,
+                'end' => $item->end_date
             ];
         }
         return view('frontend.pages.jadwal', compact('event'));

@@ -359,6 +359,7 @@ input[type="password"],
 input[type="submit"],
 input[type="reset"],
 input[type="button"],
+input[type="datetime-local"],
 button,
 .sc_button{
 	line-height: 1.3em;
@@ -371,6 +372,7 @@ input[type="email"],
 input[type="password"],
 input[type="search"],
 input[type="checkbox"],
+input[type="datetime-local"],
 input[type="radio"] {
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -402,6 +404,7 @@ input[type="number"],
 input[type="email"],
 input[type="password"],
 input[type="search"],
+input[type="datetime-local"],
 select,
 textarea {
 	-webkit-appearance: none;
@@ -430,6 +433,7 @@ input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="search"]:focus,
+input[type="datetime-local"]:focus,
 select,
 textarea:focus {
 	outline: none;
@@ -5207,6 +5211,7 @@ body.custom_side_block_opened #csb_toggle {
 }
 .popup_wrap input[type="text"],
 .popup_wrap input[type="email"],
+.popup_wrap input[type="datetime-local"],
 .popup_wrap input[type="password"] {
 	font-size:1.1667em;
 	line-height:1.5em;
@@ -5299,6 +5304,7 @@ body.custom_side_block_opened #csb_toggle {
 }
 .popup_wrap input[type="text"],
 .popup_wrap input[type="email"],
+.popup_wrap input[type="datetime-local"],
 .popup_wrap input[type="password"] {
 	width:100%;
 	border: 2px solid #ebebeb;

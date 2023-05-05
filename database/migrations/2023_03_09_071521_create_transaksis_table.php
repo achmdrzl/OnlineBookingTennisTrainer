@@ -18,14 +18,17 @@ return new class extends Migration
             $table->string('status_pemb')->default('belum-bayar');
             $table->string('status_bo')->default('waiting');
             $table->string('bukti_bayar');
-            $table->string('lap_lat');
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
+            $table->integer('jml_ballboy')->nullable();
+            $table->integer('jml_asisten')->nullable();
+            $table->integer('jml_pelatih')->nullable();
+            $table->integer('durasiLat')->nullable();
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->date('tgl_transaksi')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('paket_id');
-            $table->foreign('paket_id')->references('id')->on('paket_latihans')->onDelete('cascade');
+            $table->unsignedBigInteger('lap_id');
+            $table->foreign('lap_id')->references('id')->on('data_lapangans')->onDelete('cascade');
             $table->timestamps();
         });
     }

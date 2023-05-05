@@ -116,7 +116,6 @@
                                     <thead>
                                         <th>No</th>
                                         <th>Tgl Transaksi</th>
-                                        <th>Paket Order</th>
                                         <th>Lapangan Latihan</th>
                                         <th>Waktu Latihan</th>
                                         <th>Status</th>
@@ -126,15 +125,13 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->tgl_transaksi }}</td>
-                                                <td>{{ ucfirst($item->paket->nama_paket) }}</td>
-                                                <td>{{ $item->lap_lat }}</td>
-                                                <td>Mulai {{ $item->start }} Sampai dengan {{ $item->end }}</td>
+                                                <td>{{ ucfirst($item->lapangan->nama_lapangan) }}</td>
+                                                <td>Mulai pada tanggal {{ date('Y-m-d', strtotime($item->start_date)) }}, Pukul  {{ date('H:i', strtotime($item->start_date)) }} Sampai dengan {{ date('H:i', strtotime($item->end_date)) }}</td>
                                                 <td>
                                                     @if ($item->status_pemb == 'pembayaran-valid')
                                                         <div class="btn btn-success">Selesai</div>
                                                     @else
                                                         <div class="btn btn-warning"> Belum Selesai</div>
-                                                       
                                                     @endif
                                                 </td>
                                             </tr>

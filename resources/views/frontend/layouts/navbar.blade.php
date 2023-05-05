@@ -23,7 +23,7 @@
                             </li>
                         @endif
                         <li class="top_panel_link">
-                            <a href="{{ route('daftar.index') }}">Beli Paket Latihan</a>
+                            <a href="{{ route('daftar.index') }}">Daftar Latihan</a>
                         </li>
                     </ul>
                 </div>
@@ -71,12 +71,12 @@
                                     <a href="{{ route('tutorial.index') }}">Tutorial</a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="{{ route('jadwal.index') }}">Jadwal Kegiatan</a>
+                                    <a href="{{ route('jadwal.index') }}">Pendaftaran Latihan</a>
                                 </li>
-                                <li class="menu-item"
+                                {{-- <li class="menu-item"
                                     class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
                                     <a href="{{ route('daftar.index') }}">Pendaftaran</a>
-                                </li>
+                                </li> --}}
                                 @if (Auth::check())
                                     <li class="menu-item"
                                         class="{{ request()->segment(1) == 'aduan' ? 'current-menu-item current_page_item' : '' }}">
@@ -139,12 +139,12 @@
                         <a href="{{ route('tutorial.index') }}">Tutorial</a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ route('jadwal.index') }}">Jadwal Kegiatan</a>
+                        <a href="{{ route('jadwal.index') }}">Pendaftaran Latihan</a>
                     </li>
-                    <li class="menu-item"
+                    {{-- <li class="menu-item"
                         class="{{ request()->segment(1) == 'daftar' ? 'current-menu-item current_page_item' : '' }}">
                         <a href="{{ route('daftar.index') }}">Pendaftaran</a>
-                    </li>
+                    </li> --}}
                     <li class="menu-item"
                         class="{{ request()->segment(1) == 'aduan' ? 'current-menu-item current_page_item' : '' }}">
                         <a href="{{ route('aduan.index') }}">Pengaduan</a>
@@ -201,7 +201,7 @@
             </div>
         </div>
         <div class="top_panel_link">
-            <a href="{{ route('daftar.index') }}">Beli Paket Latihan</a>
+            <a href="{{ route('daftar.index') }}">Daftar Latihan</a>
         </div>
     </div>
     <div class="mask"></div>
